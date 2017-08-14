@@ -1,25 +1,48 @@
 import React, { Component } from 'react';
-import Login from './Login';
+import Login from './components/Login';
+import { Button } from 'react-bootstrap';
 
 class Main extends Component {
   constructor() {
     super();
+
     this.state = {
-      isLoggedIn: localStorage.getItem('account') != null
+      isLoggedIn: localStorage.getItem('account') != null,
+      loginShowing: false
     }
   }
 
   componentDidMount() {
-    console.log(this.state.isLoggedIn ? 'Logged in' : 'Logged out');
+
+  }
+
+  logout() {
+    localStorage.removeItem('account');
+    this.setState({ isLoggedIn: false });
+  }
+
+  loginShowingUpdate(value) {
+    this.setState({
+      loginShowing: value
+    });
   }
 
   render() {
     return (
       <div>
         { this.state.isLoggedIn ? (
-          <h1>Main App</h1>
+          <div className="loaded-app">
+            <Button bsStyle="primary" onClick={() => this.logout()}>
+              Logout
+            </Button>
+          </div>
         ) : (
-          <Login />
+          <div className="login">
+            <Button bsStyle="primary" onClick={() => this.loginShowingUpdate(true)}>
+              Login
+            </Button>
+            <Login show={this.state.loginShowing} onHide={() => this.loginShowingUpdate(false)} />
+          </div>
         )}
       </div>
     );

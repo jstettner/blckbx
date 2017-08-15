@@ -25,9 +25,7 @@ class Login extends Component {
     .map(k => esc(k) + '=' + esc(data[k]))
     .join('&');
 
-    console.log("/checkacct/" + query);
-
-    fetch(("/checkacct/" + query), {
+    fetch(("/checkacct/?" + query), {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -41,8 +39,6 @@ class Login extends Component {
       user: this.state.user,
       pass: this.state.pass
     }
-
-    console.log(payload);
 
     fetch('/addacct', {
       method: 'POST',
@@ -100,7 +96,16 @@ class Login extends Component {
             <Modal.Title id="contained-modal-title-lg">Signup</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Welcome to signup</h4>
+            <form className="flex-column flex-center">
+              <label>
+                Username:
+                <input type="text" name="user" onChange={this.handleInputChange.bind(this)}/>
+              </label>
+              <label>
+                Password:
+                <input type="text" name="pass" onChange={this.handleInputChange.bind(this)}/>
+              </label>
+            </form>
             <h5>If you already have an account, <a onClick={() => this.setState({ mode: 'login'})}>click here</a></h5>
           </Modal.Body>
           <Modal.Footer>

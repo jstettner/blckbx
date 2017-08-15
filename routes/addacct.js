@@ -1,26 +1,25 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+var User = require('./user_model.js');
+var db = require('./db.js');
 
-var mongoDB = 'localhost:27017/blckbx';
-mongoose.createConnection(mongoDB);
-
-var db = mongoose.connection;
-
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-
+// account signup
 router.post('/', function(req, res, next) {
-  db.once('open', function() {
-    var current_instance = new SomeModel({
-      user: req.body.user,
-      pass: req.body.pass
-    });
-
-    current_instance.save(function (err) {
-      if (err) return handleError(err);
-    });
+  var user = new User({
+    user: req.body.user,
+    pass: req.body.pass
   });
-  console.log('instance saved');
+
+  user.save(function (err) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      console.log('saved');
+    }
+  });
+
   res.send();
 });
 

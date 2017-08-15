@@ -5,25 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var mongoose = require('mongoose');
-//
-// var mongoDB = 'localhost:27017/blckbx';
-// mongoose.connect(mongoDB);
-//
-// var db = mongoose.connection;
-
-var Schema = mongoose.Schema;
-
-var AccountSchema = new Schema({
-    user: String,
-    pass: String
-});
-
-var AccountModel = mongoose.model('AccountModel', AccountSchema);
-
-// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-
-
 var index = require('./routes/index');
 var users = require('./routes/users');
 var addacct = require('./routes/addacct');

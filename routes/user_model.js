@@ -2,8 +2,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-    user: String,
-    pass: String
+    user: { type: String, trim: true },
+    pass: { type: String, trim: true },
+    validation: [{ key: String, created: Date }],
+    programs: [String]
 });
 
 // Compile model from schema

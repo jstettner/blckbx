@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var User = require('./user_model.js');
+var UserSchema = require('./schemas/user_model.js');
+var TokenSchema = require('./schemas/token_model.js');
 var db = require('./db.js');
 var sanitize = require("mongo-sanitize");
 
@@ -11,7 +12,7 @@ router.get('/', function(req, res, next) {
   var user = req.query.user;
   var pass = req.query.pass;
 
-  User.find({'user': user}, function (err, users) {
+  UserSchema.find({'user': user}, function (err, users) {
     if (err) return handleError(err);
     console.log(users);
   });

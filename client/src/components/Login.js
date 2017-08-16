@@ -19,9 +19,11 @@ class Login extends Component {
   }
 
   authAccount() {
+    var token = localStorage.getItem('accountData');
     const data = {
       user: this.state.user,
-      pass: this.state.pass
+      pass: this.state.pass,
+      token: token
     };
 
     var esc = encodeURIComponent;

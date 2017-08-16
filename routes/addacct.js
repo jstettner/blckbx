@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var User = require('./user_model.js');
+var User = require('./schemas/user_model.js');
 var db = require('./db.js');
 var sanitize = require("mongo-sanitize");
 

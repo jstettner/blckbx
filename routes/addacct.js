@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var User = require('./schemas/user_model.js');
+var UserSchema = require('./schemas/user_model.js');
 var db = require('./db.js');
 var sanitize = require("mongo-sanitize");
 
@@ -22,7 +22,7 @@ router.post('/', function(req, res, next) {
     errors: []
   };
 
-  User.find({ 'user': username }, function (err, users) {
+  UserSchema.find({ 'user': username }, function (err, users) {
     if (err) return handleError(err);
     if (users.length > 0) {
       response.errors.push('already exists');
@@ -37,7 +37,7 @@ router.post('/', function(req, res, next) {
     if(! passspec.test(password)) response.errors.push('password invalid');
 
     if(response.errors.length === 0) {
-      var user = new User({
+      var user = new UserSchema({
         user: username,
         pass: password,
         validation: [],

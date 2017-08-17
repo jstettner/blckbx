@@ -7,7 +7,7 @@ class Main extends Component {
     super();
 
     this.state = {
-      isLoggedIn: localStorage.getItem('account') != null,
+      isLoggedIn: localStorage.getItem('accountData') != null,
       loginShowing: false
     }
   }
@@ -17,7 +17,7 @@ class Main extends Component {
   }
 
   logout() {
-    localStorage.removeItem('account');
+    localStorage.removeItem('accountData');
     this.setState({ isLoggedIn: false });
   }
 

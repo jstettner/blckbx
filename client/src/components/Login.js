@@ -19,11 +19,10 @@ class Login extends Component {
   }
 
   authAccount() {
-    var token = localStorage.getItem('accountData');
+    // var token = localStorage.getItem('accountData');
     const data = {
       user: this.state.user,
       pass: this.state.pass,
-      token: token
     };
 
     var esc = encodeURIComponent;
@@ -39,6 +38,14 @@ class Login extends Component {
         'Content-Type': 'application/json',
       },
     })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      if(responseJson.valid) {
+        console.log(responseJson);
+      } else {
+        console.log(responseJson.error);
+      }
+    });
   }
 
   signUp() {

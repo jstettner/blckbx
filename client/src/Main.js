@@ -7,13 +7,47 @@ class Main extends Component {
     super();
 
     this.state = {
-      isLoggedIn: localStorage.getItem('accountData') != null,
-      loginShowing: false
+      isLoggedIn: null,
+      loginShowing: false,
+      user: null
     }
   }
 
-  componentDidMount() {
+  authenticateToken(token) {
+    const data = {
+      token: token
+    };
 
+    var esc = encodeURIComponent;
+
+    var query = Object.keys(data)
+    .map(k => esc(k) + '=' + esc(data[k]))
+    .join('&');
+
+    fetch(("/tokenauth/?" + query), {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      if(responseJson.valid) {
+        this.setState({
+          user: responseJson.user,
+          isLoggedIn: true
+        });
+      } else {
+        console.log('tokenInvalid');
+      }
+    });
+  }
+
+  componentDidMount() {
+    if(localStorage.getItem('accountData') != null) {
+      this.authenticateToken(localStorage.getItem('accountData'));
+    }
   }
 
   logout() {

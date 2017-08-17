@@ -71,7 +71,7 @@ class Login extends Component {
     .then((response) => response.json())
     .then((responseJson) => {
       if(responseJson.valid) {
-        console.log(responseJson);
+        localStorage.setItem('accountData', responseJson.token);
       } else {
         console.log(responseJson.error);
       }

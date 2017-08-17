@@ -7,8 +7,9 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var addacct = require('./routes/addacct');
-var checkacct = require('./routes/checkacct');
+var signup = require('./routes/signup');
+var login = require('./routes/login');
+var tokenauth = require('./routes/tokenauth');
 
 var app = express();
 
@@ -30,8 +31,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // });
 
 app.use('/users', users);
-app.use('/addacct', addacct);
-app.use('/checkacct/*', checkacct);
+app.use('/signup', signup);
+app.use('/login/*', login);
+app.use('/tokenauth', tokenauth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

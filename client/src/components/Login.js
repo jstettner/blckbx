@@ -11,6 +11,9 @@ class Login extends Component {
         pass: { inval: true },
         confirm: { inval: true }
       },
+      messages: {
+        registered: false
+      },
       user: "",
       pass: "",
       confirm: "",
@@ -26,6 +29,9 @@ class Login extends Component {
         pass: { inval: true },
         confirm: { inval: true }
       },
+      messages: {
+        registered: false
+      },
       user: "",
       pass: "",
       confirm: "",
@@ -40,6 +46,9 @@ class Login extends Component {
         user: { taken: false, inval: true },
         pass: { inval: true },
         confirm: { inval: true }
+      },
+      messages: {
+        registered: false
       },
       user: "",
       pass: "",
@@ -94,8 +103,16 @@ class Login extends Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      console.log(responseJson);
-    });
+      if(responseJson.valid) {
+        this.setState({
+          messages: {
+            registered: true
+          }
+        });
+      } else {
+        console.log(responseJson.errors);
+      }
+     });
   }
 
   checkValid(name,value) {
@@ -217,7 +234,7 @@ class Login extends Component {
             <Modal.Title id="contained-modal-title-lg">Signup</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form className="flex-column flex-center">
+            <form className="flex-column flex-center text-center">
               <label className="pv-5">
                 <span className="prm">Username:</span>
                 <input type="text" name="user" value={this.state.user} onChange={this.handleInputChange.bind(this)}/>
@@ -231,6 +248,9 @@ class Login extends Component {
                 <input type="text" name="confirm" value={this.state.confirm} onChange={this.handleInputChange.bind(this)}/>
               </label>
             </form>
+            {this.state.messages.registered && (
+              <p className="text-center ptl">Successfully registered! Please head over to the <a onClick={() => this.toLogin()}>login</a> page, and sign in with your new account.</p>
+            )}
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={() => this.toLogin()}>Login</Button>

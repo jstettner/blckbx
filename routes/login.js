@@ -7,11 +7,6 @@ var db = require('./db.js');
 var sanitize = require("mongo-sanitize");
 var randtoken = require('rand-token');
 
-function registerToken() {
-  // do something
-  console.log('');
-}
-
 // account login
 router.get('/', function(req, res, next) {
   req.body = sanitize(req.body);

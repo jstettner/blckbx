@@ -7,7 +7,7 @@ class Main extends Component {
     super();
 
     this.state = {
-      isLoggedIn: null,
+      isLoggedIn: false,
       loginShowing: false,
       user: null
     }
@@ -53,6 +53,7 @@ class Main extends Component {
   logout() {
     localStorage.removeItem('accountData');
     this.setState({ isLoggedIn: false });
+    this.loginShowingUpdate(false);
   }
 
   loginShowingUpdate(value) {
@@ -75,7 +76,7 @@ class Main extends Component {
             <Button bsStyle="primary" onClick={() => this.loginShowingUpdate(true)}>
               Login
             </Button>
-            <Login show={this.state.loginShowing} onHide={() => this.loginShowingUpdate(false)} />
+            <Login show={this.state.loginShowing} onLogin={this.authenticateToken.bind(this)} onHide={() => this.loginShowingUpdate(false)} />
           </div>
         )}
       </div>

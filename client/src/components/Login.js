@@ -81,6 +81,7 @@ class Login extends Component {
     .then((responseJson) => {
       if(responseJson.valid) {
         localStorage.setItem('accountData', responseJson.token);
+        this.props.onLogin(responseJson.token);
       } else {
         console.log(responseJson.error);
       }
@@ -115,7 +116,7 @@ class Login extends Component {
      });
   }
 
-  checkValid(name,value) {
+  checkValid(name, value) {
     if(this.state.mode === 'signup') {
       this.setState({
         invalid: (this.state.validationErrors.user.taken ||
@@ -263,8 +264,10 @@ class Login extends Component {
   }
 
   render() {
+    // prop consumer
+    const { onLogin, ...rest } = this.props
     return (
-      <Modal {...this.props} bsSize="large" aria-labelledby="contained-modal-title-lg">
+      <Modal {...rest} bsSize="large" aria-labelledby="contained-modal-title-lg">
         { this.renderBody() }
       </Modal>
     );

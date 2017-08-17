@@ -4,7 +4,10 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
     user: { type: String, trim: true },
     pass: { type: String, trim: true },
-    programs: [ String ]
+    programs: [{
+      name: String,
+      link: Schema.ObjectId
+    }]
 });
 
 // Compile model from schema

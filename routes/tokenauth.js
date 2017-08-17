@@ -13,7 +13,8 @@ router.get('/', function(req, res, next) {
 
   var response = {
     valid: false,
-    user: null
+    user: null,
+    programs: []
   }
 
   TokenSchema.findOne({'key': token}, function (err, tokenFound) {
@@ -23,6 +24,7 @@ router.get('/', function(req, res, next) {
         if(userFound !== null) {
           response.valid = true;
           response.user = userFound.user;
+          response.programs = userFound.programs;
           res.json(response);
         } else {
           res.json(response);

@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import Login from './components/Login';
 import { Button } from 'react-bootstrap';
+import IDE from './components/IDE';
+import Browser from './components/Browser';
 
 class Main extends Component {
   constructor() {
     super();
-
     this.state = {
       isLoggedIn: false,
       loginShowing: false,
-      user: null
+      user: null,
+      programs: []
     }
   }
 
@@ -36,6 +38,7 @@ class Main extends Component {
       if(responseJson.valid) {
         this.setState({
           user: responseJson.user,
+          programs: responseJson.programs,
           isLoggedIn: true
         });
       } else {
@@ -66,13 +69,16 @@ class Main extends Component {
     return (
       <div>
         { this.state.isLoggedIn ? (
-          <div className="loaded-app">
+          <div className="loaded-app"> {/* Logged in state */}
+            <h3>Welcome back, {this.state.user}</h3>
             <Button bsStyle="primary" onClick={() => this.logout()}>
               Logout
             </Button>
+            <IDE />
+            <Browser programs={this.state.programs}/>
           </div>
         ) : (
-          <div className="login">
+          <div className="login"> {/* Logged out State */}
             <Button bsStyle="primary" onClick={() => this.loginShowingUpdate(true)}>
               Login
             </Button>

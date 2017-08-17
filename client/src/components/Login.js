@@ -265,7 +265,7 @@ class Login extends Component {
 
   render() {
     // prop consumer
-    const { onLogin, ...rest } = this.props
+    const { onLogin, ...rest } = this.props;
     return (
       <Modal {...rest} bsSize="large" aria-labelledby="contained-modal-title-lg">
         { this.renderBody() }

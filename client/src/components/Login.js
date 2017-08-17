@@ -18,6 +18,16 @@ class Login extends Component {
     };
   }
 
+  resetForm() {
+    this.setState({
+      validationErrors: {
+        user: { taken: false, inval: true },
+        pass: { inval: true },
+        confirm: { inval: true }
+      }
+    }, () => this.checkValid());
+  }
+
   authAccount() {
     // var token = localStorage.getItem('accountData');
     const data = {
@@ -69,12 +79,18 @@ class Login extends Component {
   }
 
   checkValid(name,value) {
-    this.setState({
-      invalid: (this.state.validationErrors.user.taken ||
-        this.state.validationErrors.user.inval ||
-        this.state.validationErrors.pass.inval ||
-        this.state.validationErrors.confirm.inval)
-    });
+    if(this.state.mode === 'signup') {
+      this.setState({
+        invalid: (this.state.validationErrors.user.taken ||
+          this.state.validationErrors.user.inval ||
+          this.state.validationErrors.pass.inval ||
+          this.state.validationErrors.confirm.inval)
+      });
+    } else {
+      this.setState({
+        invalid: (!this.state.user || !this.state.pass)
+      });
+    }
   }
 
   handleInputChange(event) {
@@ -164,8 +180,8 @@ class Login extends Component {
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => this.setState({ mode: 'signup'})}>Signup</Button>
-            <Button onClick={() => this.authAccount()}>Submit</Button>
+            <Button onClick={() => {this.setState({ mode: 'signup'}); this.resetForm()}}>Signup</Button>
+            <Button onClick={() => this.authAccount()} disabled={this.state.invalid}>Submit</Button>
           </Modal.Footer>
         </div>
       );
@@ -197,7 +213,7 @@ class Login extends Component {
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => this.setState({ mode: 'login'})}>Login</Button>
+            <Button onClick={() => {this.setState({ mode: 'login'}); this.resetForm()}}>Login</Button>
             <Button onClick={() => this.signUp()} disabled={this.state.invalid}>Submit</Button>
           </Modal.Footer>
         </div>

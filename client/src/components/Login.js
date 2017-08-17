@@ -11,21 +11,41 @@ class Login extends Component {
         pass: { inval: true },
         confirm: { inval: true }
       },
-      user: null,
-      pass: null,
-      confirm: null,
+      user: "",
+      pass: "",
+      confirm: "",
       invalid: true
     };
   }
 
-  resetForm() {
+  toSignup() {
     this.setState({
+      mode: 'signup',
       validationErrors: {
         user: { taken: false, inval: true },
         pass: { inval: true },
         confirm: { inval: true }
-      }
-    }, () => this.checkValid());
+      },
+      user: "",
+      pass: "",
+      confirm: "",
+      invalid: true
+    });
+  }
+
+  toLogin() {
+    this.setState({
+      mode: 'login',
+      validationErrors: {
+        user: { taken: false, inval: true },
+        pass: { inval: true },
+        confirm: { inval: true }
+      },
+      user: "",
+      pass: "",
+      confirm: "",
+      invalid: true
+    });
   }
 
   authAccount() {
@@ -41,7 +61,7 @@ class Login extends Component {
     .map(k => esc(k) + '=' + esc(data[k]))
     .join('&');
 
-    fetch(("/checkacct/?" + query), {
+    fetch(("/login/?" + query), {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -64,7 +84,7 @@ class Login extends Component {
       pass: this.state.pass
     }
 
-    fetch('/addacct', {
+    fetch('/signup', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -171,16 +191,16 @@ class Login extends Component {
             <form className="flex-column flex-center">
               <label className="pv-5">
                 <span className="prm">Username:</span>
-                <input type="text" name="user" onChange={this.handleInputChange.bind(this)}/>
+                <input type="text" name="user" value={this.state.user} onChange={this.handleInputChange.bind(this)}/>
               </label>
               <label className="pv-5">
                 <span className="prm">Password:</span>
-                <input type="text" name="pass" onChange={this.handleInputChange.bind(this)}/>
+                <input type="text" name="pass" value={this.state.pass} onChange={this.handleInputChange.bind(this)}/>
               </label>
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => {this.setState({ mode: 'signup'}); this.resetForm()}}>Signup</Button>
+            <Button onClick={() => this.toSignup()}>Signup</Button>
             <Button onClick={() => this.authAccount()} disabled={this.state.invalid}>Submit</Button>
           </Modal.Footer>
         </div>
@@ -200,20 +220,20 @@ class Login extends Component {
             <form className="flex-column flex-center">
               <label className="pv-5">
                 <span className="prm">Username:</span>
-                <input type="text" name="user" onChange={this.handleInputChange.bind(this)}/>
+                <input type="text" name="user" value={this.state.user} onChange={this.handleInputChange.bind(this)}/>
               </label>
               <label className="pv-5">
                 <span className="prm">Password:</span>
-                <input type="text" name="pass" onChange={this.handleInputChange.bind(this)}/>
+                <input type="text" name="pass" value={this.state.pass} onChange={this.handleInputChange.bind(this)}/>
               </label>
               <label className="pv-5">
                 <span className="prm">Retype Password:</span>
-                <input type="text" name="confirm" onChange={this.handleInputChange.bind(this)}/>
+                <input type="text" name="confirm" value={this.state.confirm} onChange={this.handleInputChange.bind(this)}/>
               </label>
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => {this.setState({ mode: 'login'}); this.resetForm()}}>Login</Button>
+            <Button onClick={() => this.toLogin()}>Login</Button>
             <Button onClick={() => this.signUp()} disabled={this.state.invalid}>Submit</Button>
           </Modal.Footer>
         </div>

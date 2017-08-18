@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Login from './components/Login';
-import { Button } from 'react-bootstrap';
-import IDE from './components/IDE';
-import Browser from './components/Browser';
+import { Button, Glyphicon } from 'react-bootstrap';
+import DevInterface from './views/DevInterface';
 
 class Main extends Component {
   constructor() {
@@ -70,12 +69,11 @@ class Main extends Component {
       <div>
         { this.state.isLoggedIn ? (
           <div className="loaded-app"> {/* Logged in state */}
-            <h3>Welcome back, {this.state.user}</h3>
-            <Button bsStyle="primary" onClick={() => this.logout()}>
-              Logout
+            <h3>Welcome back, {this.state.user}!</h3>
+            <Button bsStyle="danger" onClick={() => this.logout()}>
+              <Glyphicon glyph="alert" /> Logout
             </Button>
-            <IDE />
-            <Browser programs={this.state.programs}/>
+            <DevInterface programs={this.state.programs} />
           </div>
         ) : (
           <div className="login"> {/* Logged out State */}

@@ -41,6 +41,7 @@ class DevInterface extends Component {
     .then((responseJson) => {
       if(responseJson.success) {
         console.log('program saved');
+        this.props.reauth(localStorage.getItem('accountData'));
       } else {
         console.log('failed');
       }

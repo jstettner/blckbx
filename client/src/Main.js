@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Login from './components/Login';
 import { Button, Glyphicon } from 'react-bootstrap';
 import DevInterface from './views/DevInterface';
+import Landing from './views/Landing';
 
 class Main extends Component {
   constructor() {
@@ -12,6 +13,8 @@ class Main extends Component {
       user: null,
       programs: []
     }
+
+    this.authenticateToken = this.authenticateToken.bind(this);
   }
 
   authenticateToken(token) {
@@ -73,16 +76,14 @@ class Main extends Component {
             <Button bsStyle="danger" onClick={() => this.logout()}>
               <Glyphicon glyph="alert" /> Logout
             </Button>
-            <DevInterface programs={this.state.programs} />
+            <DevInterface reauth={this.authenticateToken} programs={this.state.programs} />
           </div>
         ) : (
           <div className="login"> {/* Logged out State */}
-            <Button bsStyle="primary" onClick={() => this.loginShowingUpdate(true)}>
-              Login
-            </Button>
-            <Login show={this.state.loginShowing} onLogin={this.authenticateToken.bind(this)} onHide={() => this.loginShowingUpdate(false)} />
+            <Landing updateLogin={this.loginShowingUpdate.bind(this)}/>
           </div>
         )}
+        <Login show={this.state.loginShowing} onLogin={this.authenticateToken.bind(this)} onHide={() => this.loginShowingUpdate(false)} />
       </div>
     );
   }

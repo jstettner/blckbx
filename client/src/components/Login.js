@@ -58,7 +58,6 @@ class Login extends Component {
   }
 
   authAccount() {
-    // var token = localStorage.getItem('accountData');
     const data = {
       user: this.state.user,
       pass: this.state.pass,
@@ -82,6 +81,7 @@ class Login extends Component {
       if(responseJson.valid) {
         localStorage.setItem('accountData', responseJson.token);
         this.props.onLogin(responseJson.token);
+        this.props.onHide();
       } else {
         console.log(responseJson.error);
       }
@@ -109,7 +109,7 @@ class Login extends Component {
           messages: {
             registered: true
           }
-        });
+        }, () => this.authAccount());
       } else {
         console.log(responseJson.errors);
       }
@@ -213,7 +213,7 @@ class Login extends Component {
               </label>
               <label className="pv-5">
                 <span className="prm">Password:</span>
-                <input type="text" name="pass" value={this.state.pass} onChange={this.handleInputChange.bind(this)}/>
+                <input type="password" name="pass" value={this.state.pass} onChange={this.handleInputChange.bind(this)}/>
               </label>
             </form>
           </Modal.Body>
@@ -242,11 +242,11 @@ class Login extends Component {
               </label>
               <label className="pv-5">
                 <span className="prm">Password:</span>
-                <input type="text" name="pass" value={this.state.pass} onChange={this.handleInputChange.bind(this)}/>
+                <input type="password" name="pass" value={this.state.pass} onChange={this.handleInputChange.bind(this)}/>
               </label>
               <label className="pv-5">
                 <span className="prm">Retype Password:</span>
-                <input type="text" name="confirm" value={this.state.confirm} onChange={this.handleInputChange.bind(this)}/>
+                <input type="password" name="confirm" value={this.state.confirm} onChange={this.handleInputChange.bind(this)}/>
               </label>
             </form>
             {this.state.messages.registered && (

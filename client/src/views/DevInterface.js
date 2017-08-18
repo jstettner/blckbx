@@ -7,8 +7,13 @@ class DevInterface extends Component {
     super();
     this.state = {
       code: "",
-      current_program: 'new'
+      program_link: null,
+      program_name: "untitled"
     }
+
+    this.updateCode = this.updateCode.bind(this);
+    this.save = this.save.bind(this);
+    this.fetchProgram = this.fetchProgram.bind(this);
   }
 
   updateCode(event) {
@@ -42,11 +47,39 @@ class DevInterface extends Component {
      });
   }
 
+  fetchProgram(link) {
+    var payload = {
+      link: link,
+      token: localStorage.getItem('accountData')
+    }
+
+    fetch(('/getProgram'), {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload)
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      if(responseJson.success) {
+        this.setState({
+          code: responseJson.program,
+          program_link: link,
+          program_name: responseJson.name
+        });
+      } else {
+        console.log('failed to get');
+      }
+     });
+  }
+
   render() {
     return(
       <div className="dev">
-        <IDE code={this.state.code} updateCode={this.updateCode.bind(this)}/>
-        <Browser save={this.save.bind(this)} programs={this.props.programs} />
+        <IDE code={this.state.code} updateCode={this.updateCode}/>
+        <Browser save={this.save} programName={this.state.program_name} fetchProgram={this.fetchProgram} programs={this.props.programs} />
       </div>
     );
   }

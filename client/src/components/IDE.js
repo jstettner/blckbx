@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import AceEditor from 'react-ace';
 
 import 'brace/mode/java';
-import 'brace/theme/github';
+import 'brace/theme/monokai';
 
 class IDE extends Component {
   constructor(props) {
@@ -11,33 +11,25 @@ class IDE extends Component {
     this.state = {
       code: this.props.code
     }
-
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({code: nextProps.code});
-    // this.ace.editor.setValue(nextProps.code);
   }
 
   render() {
-    // const code_options = {
-    //   mode: "javascript",
-    //   lineNumbers: true,
-    //   theme: 'monokai'
-    // };
-
     return(
       <div>
         <AceEditor
-          className="width-100"
+          className="mt-10"
           mode="java"
-          theme="github"
+          theme="monokai"
           value={this.state.code}
           onChange={this.props.updateCode}
           name="ace"
+          width="100%"
           editorProps={{$blockScrolling: true}}
         />
-        {/* <CodeMirror className="ptm" value={this.state.code} onChange={this.props.updateCode} options={code_options}/> */}
       </div>
     );
   }

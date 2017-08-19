@@ -28,7 +28,8 @@ class Browser extends Component {
         </div>
         <ListGroup>
           <div className="flex-row">
-            <ListGroupItem className="width-70" key={1} onClick={() => console.log('new program')}>
+            {/* MAKE SURE THIS NEW PROGRAM CHANGES CURRENT LINK AFTER ADDING PROGRAM EDITS */}
+            <ListGroupItem className="width-70" key={1} onClick={() => this.props.updateCode("")}>
               <Glyphicon glyph="plus" /> Program
             </ListGroupItem>
             <Button className="width-30" bsStyle="primary" onClick={() => this.props.save(this.state.name)}>

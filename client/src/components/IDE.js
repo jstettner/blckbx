@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-// import brace from 'brace';
 import AceEditor from 'react-ace';
 
-import 'brace/mode/java';
+import 'brace/mode/javascript';
 import 'brace/theme/monokai';
 
 class IDE extends Component {
@@ -22,7 +21,7 @@ class IDE extends Component {
       <div>
         <AceEditor
           className="mt-10"
-          mode="java"
+          mode="javascript"
           theme="monokai"
           value={this.state.code}
           onChange={this.props.updateCode}

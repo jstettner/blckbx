@@ -10,6 +10,8 @@ var users = require('./routes/users');
 var signup = require('./routes/signup');
 var login = require('./routes/login');
 var tokenauth = require('./routes/tokenauth');
+var saveprogram = require('./routes/saveprogram');
+var getprogram = require('./routes/getprogram');
 
 var app = express();
 
@@ -34,6 +36,8 @@ app.use('/users', users);
 app.use('/signup', signup);
 app.use('/login/*', login);
 app.use('/tokenauth', tokenauth);
+app.use('/saveprogram', saveprogram);
+app.use('/getprogram', getprogram);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

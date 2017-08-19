@@ -80,7 +80,7 @@ class DevInterface extends Component {
     return(
       <div className="dev">
         <IDE code={this.state.code} updateCode={this.updateCode}/>
-        <Browser save={this.save} programName={this.state.program_name} fetchProgram={this.fetchProgram} programs={this.props.programs} />
+        <Browser save={this.save} updateCode={this.updateCode} programName={this.state.program_name} fetchProgram={this.fetchProgram} programs={this.props.programs} />
       </div>
     );
   }

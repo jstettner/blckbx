@@ -11,6 +11,8 @@ var login = require('./routes/login');
 var tokenauth = require('./routes/tokenauth');
 var saveprogram = require('./routes/saveprogram');
 var getprogram = require('./routes/getprogram');
+var runprogram = require('./routes/runprogram');
+var initializeprogram = require('./routes/initializeprogram');
 
 var app = express();
 
@@ -36,6 +38,8 @@ app.use('/login/*', login);
 app.use('/tokenauth', tokenauth);
 app.use('/saveprogram', saveprogram);
 app.use('/getprogram', getprogram);
+app.use('/runprogram', runprogram);
+app.use('/initializeprogram', initializeprogram);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

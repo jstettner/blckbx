@@ -11,7 +11,6 @@ var sanitize = require("mongo-sanitize");
 router.post('/', function(req, res, next) {
   req.body = sanitize(req.body);
   var link = req.body.link;
-  var token = req.body.token;
 
   var response = {
     success: false,
@@ -20,22 +19,14 @@ router.post('/', function(req, res, next) {
     errors: []
   }
 
-  TokenSchema.findOne({'key': token}, function (err, tokenFound) {
-    if (err) return handleError(err);
-    if(tokenFound !== null) {
-      ProgramSchema.findOne({_id: link}, function (err, program) {
-        if(program !== null) {
-          response.success = true;
-          response.name = program.name;
-          response.prompt = program.prompt;
-          res.json(response);
-        } else {
-          response.errors.push('program doesn\'t exist');
-          res.json(response);
-        }
-      });
+  ProgramSchema.findOne({_id: link}, function (err, program) {
+    if(program !== null) {
+      response.success = true;
+      response.name = program.name;
+      response.prompt = program.prompt;
+      res.json(response);
     } else {
-      response.errors.push('noauth');
+      response.errors.push('program doesn\'t exist');
       res.json(response);
     }
   });

@@ -12,7 +12,6 @@ var sandbox = require('../vm/vm.js');
 router.post('/', function(req, res, next) {
   req.body = sanitize(req.body);
   var link = req.body.link;
-  var token = req.body.token;
   var params = req.body.params;
 
   var response = {
@@ -22,23 +21,16 @@ router.post('/', function(req, res, next) {
     errors: []
   }
 
-  TokenSchema.findOne({'key': token}, function (err, tokenFound) {
-    if (err) return handleError(err);
-    if(tokenFound !== null) {
-      ProgramSchema.findOne({_id: link}, function (err, program) {
-        if(program !== null) {
-          sandbox.runprgm(program.program, params, function (output) {
-            response.result = output.result;
-            response.console = output.console;
-            res.json(result);
-          });
-        } else {
-          response.errors.push('program doesn\'t exist');
-          res.json(response);
-        }
+  ProgramSchema.findOne({_id: link}, function (err, program) {
+    if(program !== null) {
+      sandbox.runprgm(program.program, params, function (output) {
+        response.success = true;
+        response.result = output.result;
+        response.console = output.console;
+        res.json(result);
       });
     } else {
-      response.errors.push('noauth');
+      response.errors.push('program doesn\'t exist');
       res.json(response);
     }
   });

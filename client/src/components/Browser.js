@@ -49,14 +49,16 @@ class Browser extends Component {
         </div>
         <ListGroup>
           <div className="flex-row">
-            {/* MAKE SURE THIS NEW PROGRAM CHANGES CURRENT LINK AFTER ADDING PROGRAM EDITS */}
-            <ListGroupItem className="width-70" key={1} onClick={() => this.props.newProgram()}>
-              <Glyphicon glyph="plus" /> Program
-            </ListGroupItem>
-            <Button className="width-30" bsStyle="primary" onClick={() => this.props.save(this.state.name, this.state.prompt)}>
-              <Glyphicon glyph="save" /> Save
+            <Button className="mv-5 mh-5 width-20" bsStyle="default" onClick={() => this.props.save(this.state.name, this.state.prompt)}>
+              <Glyphicon glyph="cloud-upload" /> Save
+            </Button>
+            <Button className="mv-5 mh-5 width-20" bsStyle="primary" onClick={() => this.props.run()}>
+              <Glyphicon glyph="circle-arrow-right" /> Run
             </Button>
           </div>
+          <ListGroupItem className="width-70" key={1} onClick={() => this.props.newProgram()}>
+            <Glyphicon glyph="plus-sign" /> Program
+          </ListGroupItem>
           { programs.map(program =>
             <ListGroupItem key={program.link} onClick={() => this.props.fetchProgram(program.link)}>
               <Glyphicon glyph="edit" /> {program.name}

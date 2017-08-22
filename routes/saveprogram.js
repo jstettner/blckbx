@@ -16,6 +16,7 @@ router.post('/', function(req, res, next) {
   var token = req.body.token;
 
   var response = {
+    link: null,
     success: false
   }
 
@@ -36,7 +37,8 @@ router.post('/', function(req, res, next) {
               res.json(response);
             }
             else {
-              response.success = true
+              response.success = true;
+              response.link = programInstance._id;
               res.json(response);
             }
           });

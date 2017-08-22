@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
 var signup = require('./routes/signup');
 var login = require('./routes/login');
 var tokenauth = require('./routes/tokenauth');
@@ -32,7 +31,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 //     next();
 // });
 
-app.use('/users', users);
 app.use('/signup', signup);
 app.use('/login/*', login);
 app.use('/tokenauth', tokenauth);

@@ -10,41 +10,32 @@ var sanitize = require("mongo-sanitize");
 // account signup
 router.post('/', function(req, res, next) {
   req.body = sanitize(req.body);
-  var name = req.body.name;
-  var prompt = req.body.prompt;
-  var program = req.body.program;
+  var link = req.body.link;
   var token = req.body.token;
 
   var response = {
-    success: false
+    success: false,
+    name: "",
+    prompt: "",
+    errors: []
   }
 
   TokenSchema.findOne({'key': token}, function (err, tokenFound) {
     if (err) return handleError(err);
     if(tokenFound !== null) {
-      var programInstance = new ProgramSchema({
-        name: name,
-        prompt: prompt,
-        program: program
-      });
-      UserSchema.findOneAndUpdate({_id: tokenFound.user}, {$push: {programs: {name: name, link: programInstance}}}, function (err, user) {
-        if(user !== null) {
-          programInstance.user = user;
-          programInstance.save(function (err) {
-            if (err) {
-              console.log(err);
-              res.json(response);
-            }
-            else {
-              response.success = true
-              res.json(response);
-            }
-          });
+      ProgramSchema.findOne({_id: link}, function (err, program) {
+        if(program !== null) {
+          response.success = true;
+          response.name = program.name;
+          response.prompt = program.prompt;
+          res.json(response);
         } else {
+          response.errors.push('program doesn\'t exist');
           res.json(response);
         }
       });
     } else {
+      response.errors.push('noauth');
       res.json(response);
     }
   });

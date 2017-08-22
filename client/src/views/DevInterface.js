@@ -6,14 +6,25 @@ class DevInterface extends Component {
   constructor() {
     super();
     this.state = {
-      code: "// only accepts one function in the following format, params can vary.\n\nfunction(x) {\n\treturn x;\n}",
+      code: "",
       program_link: null,
-      program_name: "untitled"
+      program_name: "",
+      program_prompt: ""
     }
 
     this.updateCode = this.updateCode.bind(this);
     this.save = this.save.bind(this);
     this.fetchProgram = this.fetchProgram.bind(this);
+    this.newProgram = this.newProgram.bind(this);
+  }
+
+  newProgram() {
+    this.setState({
+      code: "// only accepts one function in the following format, params can vary.\n\nfunction main(x) {\n\treturn x;\n}\n",
+      program_link: null,
+      program_name: "untitled",
+      program_prompt: "enter something..."
+    });
   }
 
   updateCode(event) {
@@ -22,9 +33,16 @@ class DevInterface extends Component {
     });
   }
 
-  save(name) {
+  componentDidMount() {
+    this.newProgram();
+  }
+
+  save(name,prompt) {
+    console.log(name);
+    console.log(prompt);
     var payload = {
       name: name,
+      prompt: prompt,
       program: this.state.code,
       token: localStorage.getItem('accountData')
     }
@@ -42,6 +60,7 @@ class DevInterface extends Component {
       if(responseJson.success) {
         console.log('program saved');
         this.props.reauth(localStorage.getItem('accountData'));
+        this.newProgram();
       } else {
         console.log('failed');
       }
@@ -68,6 +87,7 @@ class DevInterface extends Component {
         this.setState({
           code: responseJson.program,
           program_link: link,
+          program_prompt: responseJson.prompt,
           program_name: responseJson.name
         });
       } else {
@@ -80,7 +100,14 @@ class DevInterface extends Component {
     return(
       <div className="dev">
         <IDE code={this.state.code} updateCode={this.updateCode}/>
-        <Browser save={this.save} updateCode={this.updateCode} programName={this.state.program_name} fetchProgram={this.fetchProgram} programs={this.props.programs} />
+        <Browser
+          save={this.save}
+          updateCode={this.updateCode}
+          programName={this.state.program_name}
+          programPrompt={this.state.program_prompt}
+          fetchProgram={this.fetchProgram}
+          newProgram={this.newProgram}
+          programs={this.props.programs} />
       </div>
     );
   }

@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var programSchema = new Schema({
   name: String,
+  prompt: String,
   program: String,
   user: Schema.ObjectId,
   createdAt: { type: Date, default: Date.now }

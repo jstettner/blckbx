@@ -17,6 +17,7 @@ router.post('/', function(req, res, next) {
     success: false,
     name: "",
     program: "",
+    prompt: "",
     errors: []
   }
 
@@ -28,6 +29,7 @@ router.post('/', function(req, res, next) {
           response.success = true;
           response.name = program.name;
           response.program = program.program;
+          response.prompt = program.prompt;
           res.json(response);
         } else {
           response.errors.push('program doesn\'t exist');

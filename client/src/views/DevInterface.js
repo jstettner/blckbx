@@ -6,7 +6,7 @@ class DevInterface extends Component {
   constructor() {
     super();
     this.state = {
-      code: "",
+      code: "// only accepts one function in the following format, params can vary.\n\nfunction(x) {\n\treturn x;\n}",
       program_link: null,
       program_name: "untitled"
     }

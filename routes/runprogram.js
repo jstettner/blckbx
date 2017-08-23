@@ -22,12 +22,13 @@ router.post('/', function(req, res, next) {
   }
 
   ProgramSchema.findOne({_id: link}, function (err, program) {
-    if(program !== null) {
-      sandbox.runprgm(program.program, params, function (output) {
+    if(program) {
+      console.log('reached');
+      sandbox(program.program, params, function (output) {
         response.success = true;
         response.result = output.result;
         response.console = output.console;
-        res.json(result);
+        res.json(response);
       });
     } else {
       response.errors.push('program doesn\'t exist');

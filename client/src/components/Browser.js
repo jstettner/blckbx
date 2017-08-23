@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem, Glyphicon, Button } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
 
 class Browser extends Component {
   constructor() {
     super();
     this.state = {
       name: "",
-      prompt: ""
+      prompt: "",
+      redirect: false
     }
   }
 
@@ -32,8 +34,15 @@ class Browser extends Component {
     this.setState({prompt:e.target.value});
   }
 
+  run() {
+    this.props.save(this.state.name, this.state.prompt, this.setState({ redirect: true }));
+  }
+
   render() {
-    var programs = this.props.programs;
+    const { redirect } = this.state;
+    if (redirect) {
+      return <Redirect to={'/program/' + this.props.link}/>;
+    }
 
     return(
       <div className="browser">
@@ -52,14 +61,14 @@ class Browser extends Component {
             <Button className="mv-5 mh-5 width-20" bsStyle="default" onClick={() => this.props.save(this.state.name, this.state.prompt)}>
               <Glyphicon glyph="cloud-upload" /> Save
             </Button>
-            <Button className="mv-5 mh-5 width-20" bsStyle="primary" onClick={() => this.props.run()}>
-              <Glyphicon glyph="circle-arrow-right" /> Run
+            <Button className="mv-5 mh-5 width-20" bsStyle="primary" onClick={() => this.run()} >
+              <Glyphicon glyph="circle-arrow-right" /> Save and Run
             </Button>
           </div>
           <ListGroupItem className="width-70" key={1} onClick={() => this.props.newProgram()}>
             <Glyphicon glyph="plus-sign" /> Program
           </ListGroupItem>
-          { programs.map(program =>
+          { this.props.programs.map(program =>
             <ListGroupItem key={program.link} onClick={() => this.props.fetchProgram(program.link)}>
               <Glyphicon glyph="edit" /> {program.name}
             </ListGroupItem>

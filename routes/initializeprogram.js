@@ -20,7 +20,7 @@ router.post('/', function(req, res, next) {
   }
 
   ProgramSchema.findOne({_id: link}, function (err, program) {
-    if(program !== null) {
+    if(program) {
       response.success = true;
       response.name = program.name;
       response.prompt = program.prompt;

@@ -5720,6 +5720,10 @@ react-codemirror@^1.0.0:
     lodash.isequal "^4.5.0"
     prop-types "^15.5.4"
 
+react-console-component@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/react-console-component/-/react-console-component-0.6.1.tgz#241be9fcee815e58cd6de89c89ea72b6ae12b626"
+
 react-dev-utils@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-3.1.0.tgz#445c61e9eb0628532b33b02249d9763546d1acce"

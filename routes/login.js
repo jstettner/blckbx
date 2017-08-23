@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
 
   UserSchema.findOne({'user': user}, function (err, userFound) {
     if (err) return handleError(err);
-    if(userFound !== null) {
+    if(userFound) {
       if(userFound.pass === pass) {
         var key = randtoken.generate(16);
         var token = new TokenSchema({

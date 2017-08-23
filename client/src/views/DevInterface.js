@@ -16,7 +16,6 @@ class DevInterface extends Component {
     this.save = this.save.bind(this);
     this.fetchProgram = this.fetchProgram.bind(this);
     this.newProgram = this.newProgram.bind(this);
-    this.run = this.run.bind(this);
   }
 
   newProgram() {
@@ -38,12 +37,11 @@ class DevInterface extends Component {
     this.newProgram();
   }
 
-  save(name,prompt) {
-    console.log(name);
-    console.log(prompt);
+  save(name,prompt,callback) {
     var payload = {
       name: name,
       prompt: prompt,
+      link: this.state.program_link,
       program: this.state.code,
       token: localStorage.getItem('accountData')
     }
@@ -61,14 +59,14 @@ class DevInterface extends Component {
       if(responseJson.success) {
         console.log('program saved');
         this.props.reauth(localStorage.getItem('accountData'));
-        this.fetchProgram(responseJson.link);
+        this.fetchProgram(responseJson.link,callback);
       } else {
         console.log('failed');
       }
      });
   }
 
-  fetchProgram(link) {
+  fetchProgram(link,callback) {
     var payload = {
       link: link,
       token: localStorage.getItem('accountData')
@@ -90,32 +88,7 @@ class DevInterface extends Component {
           program_link: link,
           program_prompt: responseJson.prompt,
           program_name: responseJson.name
-        });
-      } else {
-        console.log('failed to get');
-      }
-     });
-  }
-
-  run() {
-    console.log('ran');
-    var payload = {
-      link: this.state.programLink,
-      params: '1'
-    }
-
-    fetch(('/runprogram'), {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload)
-    })
-    .then((response) => response.json())
-    .then((responseJson) => {
-      if(responseJson.success) {
-        console.log(responseJson);
+        }, () => {if(typeof callback === "function") { callback(); }});
       } else {
         console.log('failed to get');
       }
@@ -133,8 +106,8 @@ class DevInterface extends Component {
           programPrompt={this.state.program_prompt}
           fetchProgram={this.fetchProgram}
           newProgram={this.newProgram}
-          programs={this.props.programs}
-          run={this.run} />
+          link={this.state.program_link}
+          programs={this.props.programs} />
       </div>
     );
   }

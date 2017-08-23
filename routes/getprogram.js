@@ -23,9 +23,9 @@ router.post('/', function(req, res, next) {
 
   TokenSchema.findOne({'key': token}, function (err, tokenFound) {
     if (err) return handleError(err);
-    if(tokenFound !== null) {
+    if(tokenFound) {
       ProgramSchema.findOne({_id: link}, function (err, program) {
-        if(program !== null) {
+        if(program) {
           response.success = true;
           response.name = program.name;
           response.program = program.program;

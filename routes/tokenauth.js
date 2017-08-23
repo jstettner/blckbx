@@ -19,9 +19,9 @@ router.get('/', function(req, res, next) {
 
   TokenSchema.findOne({'key': token}, function (err, tokenFound) {
     if (err) return handleError(err);
-    if(tokenFound !== null) {
+    if(tokenFound) {
       UserSchema.findOne({'_id': tokenFound.user}, function (err, userFound) {
-        if(userFound !== null) {
+        if(userFound) {
           response.valid = true;
           response.user = userFound.user;
           response.programs = userFound.programs;

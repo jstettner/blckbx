@@ -6,6 +6,7 @@ var TokenSchema = require('./schemas/token_model.js');
 var db = require('./db.js');
 var sanitize = require("mongo-sanitize");
 var randtoken = require('rand-token');
+var bcrypt = require('bcrypt');
 
 // account login
 router.get('/', function(req, res, next) {
@@ -22,30 +23,33 @@ router.get('/', function(req, res, next) {
   UserSchema.findOne({'user': user}, function (err, userFound) {
     if (err) return handleError(err);
     if(userFound) {
-      if(userFound.pass === pass) {
-        var key = randtoken.generate(16);
-        var token = new TokenSchema({
-          key: key,
-          user: userFound
-        });
+      bcrypt.compare(pass, userFound.pass, function(err, valid) {
+        if(err) return err;
+        if(valid) {
+          var key = randtoken.generate(16);
+          var token = new TokenSchema({
+            key: key,
+            user: userFound
+          });
 
-        token.save(function (err) {
-          if (err) {
-            console.log(err);
-            response.valid = false;
-            res.json(response);
-          }
-          else {
-            response.valid = true;
-            response.token = key;
-            res.json(response);
-          }
-        });
-      } else {
-        response.error = 'password incorrect';
-        response.valid = false;
-        res.json(response);
-      }
+          token.save(function (err) {
+            if (err) {
+              console.log(err);
+              response.valid = false;
+              res.json(response);
+            }
+            else {
+              response.valid = true;
+              response.token = key;
+              res.json(response);
+            }
+          });
+        } else {
+          response.error = 'password incorrect';
+          response.valid = false;
+          res.json(response);
+        }
+      });
     } else {
       response.error = 'user not found';
       response.valid = false

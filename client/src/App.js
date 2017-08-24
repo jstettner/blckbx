@@ -8,25 +8,31 @@ class App extends Component {
     super();
     this.state = {
       name: "",
-      signedIn: true
+      signedIn: false
     }
 
     this.setName = this.setName.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
-  setName(name) {
+  setName(name,signedIn) {
     console.log(name);
     this.setState({
-      name: name
+      name: name,
+      signedIn: signedIn
     });
+  }
+
+  logout() {
+    this.child.logout();
   }
 
   render() {
     return (
       <div className="App">
-        <Header name={this.state.name} signedIn={this.state.signedIn}/>
+        <Header name={this.state.name} signedIn={this.state.signedIn} logout={this.logout}/>
         <div className="container">
-          <Main setName={this.setName} />
+          <Main setParent={this.setName} ref={ref => (this.child = ref)}/>
         </div>
       </div>
     );

@@ -42,7 +42,7 @@ class Main extends Component {
           programs: responseJson.programs,
           isLoggedIn: true
         });
-        this.props.setName(this.state.user);
+        this.props.setParent(this.state.user,true);
       } else {
         console.log('tokenInvalid');
       }
@@ -59,6 +59,7 @@ class Main extends Component {
     localStorage.removeItem('accountData');
     this.setState({ isLoggedIn: false });
     this.loginShowingUpdate(false);
+    this.props.setParent(this.state.user,false);
   }
 
   loginShowingUpdate(value) {

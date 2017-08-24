@@ -48,8 +48,7 @@ class Browser extends Component {
             <input className="form-control" type="text" name="name" value={this.props.programPrompt} placeholder="enter a prompt to show the user..." onChange={this.props.handlePromptChange}/>
           </div>
         </div>
-        <div className="mb-10 mid-grey">Note: Please save before running</div>
-        <ListGroup>
+        <ListGroup className="pv-10">
           <ListGroupItem className="width-70 btn-mid" key={1} onClick={() => this.props.newProgram()}>
             <Glyphicon glyph="plus-sign" /> Program
           </ListGroupItem>

@@ -19,9 +19,16 @@
 }
 
 // Primary
+$deep-sea: #0d8074;
+$deeper-sea: #0a695f;
+$light-sea: #13b9a8;
+$gem: #3f00ff;
+
 // Greys
 $grey: #F5F7F9;
-$text: #5f5f5f;
+$dark-grey: #151515;
+$light-grey: #a5a5a5;
+$text: $light-grey;
 $black: #4B4D4E;
 $border-grey: #DDD;
 $mid-grey: #b0b0b0;
@@ -29,12 +36,17 @@ $basic-grey: #757575;
 $grey-transparent: rgba(245, 247, 249, 0.9);
 
 @include color('grey', $grey);
+@include color('gem', $gem);
 @include color('mid-grey', $mid-grey);
 @include color('basic-grey', $basic-grey);
 @include color('border-grey', $border-grey);
 @include color('text-color', $text);
+@include color('deep-sea', $deep-sea);
+@include color('light-sea', $light-sea);
+@include color('deeper-sea', $deeper-sea);
 
 @include bg-color('grey', $grey);
 @include bg-color('black', $black);
 @include bg-color('white', white);
 @include bg-color('mid-grey', $mid-grey);
+@include bg-color('dark-grey', $dark-grey);

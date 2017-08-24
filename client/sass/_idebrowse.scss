@@ -1,0 +1,14 @@
+h3 {
+  color: $text;
+}
+
+.browser {
+  .input-group-addon {
+    min-width: 100px;
+  }
+}
+
+.list-group-item:first-child {
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}

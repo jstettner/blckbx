@@ -5,3 +5,16 @@
 .modal-container .modal, .modal-container .modal-backdrop {
   position: absolute;
 }
+
+.modal-content {
+  background-color: $dark-grey;
+  color: $light-grey !important;
+}
+
+.modal-header {
+  border-bottom: 1px solid #232323 !important;
+}
+
+.modal-footer {
+  border-top: 1px solid #232323 !important;
+}

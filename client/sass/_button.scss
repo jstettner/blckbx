@@ -1,0 +1,49 @@
+.btn-dark {
+  color: $text;
+  background-color: #333333;
+  border-style: none;
+}
+
+.btn-dark:hover{
+  color: $dark-grey;
+  background-color: $text;
+  border-style: none;
+}
+
+.btn-mid {
+  color: $text;
+  background-color: $mid-grey;
+  border-style: none;
+}
+
+.btn-mid:hover{
+  color: $dark-grey !important;
+  background-color: $text !important;
+  border-style: none;
+}
+
+.tools {
+  .btn-mid{
+    color: $dark-grey;
+    background-color: $text;
+    border-style: none;
+  }
+
+  .btn-mid:hover {
+    color: $dark-grey !important;
+    background-color: $mid-grey !important;
+    border-style: none;
+  }
+
+  .btn-primary{
+    color: $dark-grey !important;
+    background-color: $deep-sea !important;
+    border-style: none;
+  }
+
+  .btn-primary:hover {
+    color: $dark-grey !important;
+    background-color: $deeper-sea !important;
+    border-style: none;
+  }
+}

@@ -203,23 +203,23 @@ class Login extends Component {
       return(
         <div>
           <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-lg">Login</Modal.Title>
+            <Modal.Title id="contained-modal-title-lg" className="light-sea">Login</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            <form className="flex-column flex-center">
-              <label className="pv-5">
-                <span className="prm">Username:</span>
-                <input type="text" name="user" value={this.state.user} onChange={this.handleInputChange.bind(this)}/>
+          <Modal.Body className="flex-column flex-center">
+            <form className="flex-column flex-center width-70">
+              <label className="pv-5 input-group">
+                <span className="prm input-group-addon">Username:</span>
+                <input className="form-control" type="text" name="user" value={this.state.user} onChange={this.handleInputChange.bind(this)}/>
               </label>
-              <label className="pv-5">
-                <span className="prm">Password:</span>
-                <input type="password" name="pass" value={this.state.pass} onChange={this.handleInputChange.bind(this)}/>
+              <label className="pv-5 input-group">
+                <span className="prm input-group-addon">Password:</span>
+                <input className="form-control" type="password" name="pass" value={this.state.pass} onChange={this.handleInputChange.bind(this)}/>
               </label>
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => this.toSignup()}>Signup</Button>
-            <Button onClick={() => this.authAccount()} disabled={this.state.invalid}>Submit</Button>
+            <Button className="btn-dark" onClick={() => this.toSignup()}>Signup</Button>
+            <Button className="btn-dark" onClick={() => this.authAccount()} disabled={this.state.invalid}>Submit</Button>
           </Modal.Footer>
         </div>
       );
@@ -232,21 +232,21 @@ class Login extends Component {
       return(
         <div>
           <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-lg">Signup</Modal.Title>
+            <Modal.Title id="contained-modal-title-lg" className="light-sea">Signup</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            <form className="flex-column flex-center text-center">
-              <label className="pv-5">
-                <span className="prm">Username:</span>
-                <input type="text" name="user" value={this.state.user} onChange={this.handleInputChange.bind(this)}/>
+          <Modal.Body className="flex-column flex-center">
+            <form className="flex-column flex-center text-center width-70">
+              <label className="pv-5 input-group">
+                <span className="prm input-group-addon">Username:</span>
+                <input className="form-control" type="text" name="user" value={this.state.user} onChange={this.handleInputChange.bind(this)}/>
               </label>
-              <label className="pv-5">
-                <span className="prm">Password:</span>
-                <input type="password" name="pass" value={this.state.pass} onChange={this.handleInputChange.bind(this)}/>
+              <label className="pv-5 input-group">
+                <span className="prm input-group-addon">Password:</span>
+                <input className="form-control" type="password" name="pass" value={this.state.pass} onChange={this.handleInputChange.bind(this)}/>
               </label>
-              <label className="pv-5">
-                <span className="prm">Retype Password:</span>
-                <input type="password" name="confirm" value={this.state.confirm} onChange={this.handleInputChange.bind(this)}/>
+              <label className="pv-5 input-group">
+                <span className="prm input-group-addon">Retype Password:</span>
+                <input className="form-control" type="password" name="confirm" value={this.state.confirm} onChange={this.handleInputChange.bind(this)}/>
               </label>
             </form>
             {this.state.messages.registered && (
@@ -254,8 +254,8 @@ class Login extends Component {
             )}
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => this.toLogin()}>Login</Button>
-            <Button onClick={() => this.signUp()} disabled={this.state.invalid}>Submit</Button>
+            <Button className="btn-dark" onClick={() => this.toLogin()}>Login</Button>
+            <Button className="btn-dark" onClick={() => this.signUp()} disabled={this.state.invalid}>Submit</Button>
           </Modal.Footer>
         </div>
       );

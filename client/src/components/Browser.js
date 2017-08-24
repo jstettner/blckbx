@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { ListGroup, ListGroupItem, Glyphicon, Button } from 'react-bootstrap';
-import { Redirect, Link } from 'react-router-dom';
+import { ListGroup, ListGroupItem, Glyphicon } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
 
 class Browser extends Component {
   constructor() {
@@ -38,33 +38,23 @@ class Browser extends Component {
 
     return(
       <div className="browser">
-        <div className="flex-row flex-center pv-10 flex-between">
-          <div className="flex-row">
-            <span className="ph-5">Name:</span>
-            <input type="text" name="name" value={this.props.programName} onChange={this.props.handleNameChange}/>
+        <div className="width-100">
+          <div className="input-group pv-10 width-100">
+            <span className="ph-5 input-group-addon">Name:</span>
+            <input className="form-control" type="text" name="name" value={this.props.programName} placeholder="enter a name..." onChange={this.props.handleNameChange}/>
           </div>
-          <div className="flex-row">
-            <span className="ph-5">Prompt:</span>
-            <input type="text" name="name" value={this.props.programPrompt} onChange={this.props.handlePromptChange}/>
+          <div className="input-group pv-10 width-100">
+            <span className="ph-5 input-group-addon">Prompt:</span>
+            <input className="form-control" type="text" name="name" value={this.props.programPrompt} placeholder="enter a prompt to show the user..." onChange={this.props.handlePromptChange}/>
           </div>
         </div>
+        <div className="mb-10 mid-grey">Note: Please save before running</div>
         <ListGroup>
-          <div className="flex-row">
-            <Button className="mv-5 mh-5 width-20" bsStyle="default" onClick={() => this.props.save()}>
-              <Glyphicon glyph="cloud-upload" /> Save
-            </Button>
-            <Link className="mv-5 mh-5 width-20" to={'/program/' + this.props.link} target="_blank">
-              <Button bsStyle="primary">
-                <Glyphicon glyph="circle-arrow-right" /> Run
-              </Button>
-            </Link>
-          </div>
-          <span className="pv-5">Note: Please save before running</span>
-          <ListGroupItem className="width-70" key={1} onClick={() => this.props.newProgram()}>
+          <ListGroupItem className="width-70 btn-mid" key={1} onClick={() => this.props.newProgram()}>
             <Glyphicon glyph="plus-sign" /> Program
           </ListGroupItem>
           { this.props.programs.map(program =>
-            <ListGroupItem key={program.link} onClick={() => this.props.fetchProgram(program.link)}>
+            <ListGroupItem className="btn-mid" key={program.link} onClick={() => this.props.fetchProgram(program.link)}>
               <Glyphicon glyph="edit" /> {program.name}
             </ListGroupItem>
           ) }

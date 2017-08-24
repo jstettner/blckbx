@@ -24,8 +24,8 @@ class DevInterface extends Component {
     this.setState({
       code: "// only accepts one function in the following format, params can vary.\n\nfunction main(x) {\n\treturn x;\n}\n",
       program_link: null,
-      program_name: "untitled",
-      program_prompt: "enter something..."
+      program_name: "",
+      program_prompt: ""
     });
   }
 
@@ -110,8 +110,12 @@ class DevInterface extends Component {
 
   render() {
     return(
-      <div className="dev">
-        <IDE code={this.state.code} updateCode={this.updateCode}/>
+      <div className="dev ptm">
+        <IDE
+          code={this.state.code}
+          save={this.save}
+          link={this.state.program_link}
+          updateCode={this.updateCode} />
         <Browser
           save={this.save}
           updateCode={this.updateCode}
@@ -121,7 +125,6 @@ class DevInterface extends Component {
           handleNameChange={this.handleNameChange}
           handlePromptChange={this.handlePromptChange}
           newProgram={this.newProgram}
-          link={this.state.program_link}
           programs={this.props.programs} />
       </div>
     );

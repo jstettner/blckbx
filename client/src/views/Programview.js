@@ -68,14 +68,16 @@ let Programview = createClass({
   },
   render: function() {
       return (
-        <div className="container">
-          <Header className="text-color" />
-          <h2>{this.state.name}</h2>
-          <Console ref="console"
-            welcomeMessage={this.state.prompt}
-            handler={this.run}
-            autofocus={true}
-          />
+        <div className="progameview">
+          <Header />
+          <div className="container">
+            <h2>{this.state.name}</h2>
+            <Console ref="console"
+              welcomeMessage={this.state.prompt}
+              handler={this.run}
+              autofocus={true}
+            />
+          </div>
         </div>
     );
   }

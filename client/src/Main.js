@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Login from './components/Login';
-import { Button, Glyphicon } from 'react-bootstrap';
 import DevInterface from './views/DevInterface';
 import Landing from './views/Landing';
 
@@ -43,6 +42,7 @@ class Main extends Component {
           programs: responseJson.programs,
           isLoggedIn: true
         });
+        this.props.setName(this.state.user);
       } else {
         console.log('tokenInvalid');
       }
@@ -72,10 +72,6 @@ class Main extends Component {
       <div>
         { this.state.isLoggedIn ? (
           <div className="loaded-app"> {/* Logged in state */}
-            <h3>Welcome back, {this.state.user}!</h3>
-            <Button bsStyle="danger" onClick={() => this.logout()}>
-              <Glyphicon glyph="alert" /> Logout
-            </Button>
             <DevInterface reauth={this.authenticateToken} programs={this.state.programs} />
           </div>
         ) : (

@@ -54,8 +54,12 @@ let Programview = createClass({
     .then((responseJson) => {
       if(responseJson.success) {
         console.log(responseJson);
-        this.refs.console.log(responseJson.console);
-        this.refs.console.logX('result', responseJson.result);
+        if(responseJson.console.length > 0) {
+          responseJson.console.forEach(function(element) {
+            this.refs.console.log(element);
+          }, this);
+        }
+        if(responseJson.result !== 'null') this.refs.console.logX('result', responseJson.result);
         this.refs.console.return();
       } else {
         console.log('failed to get');
@@ -65,8 +69,8 @@ let Programview = createClass({
   render: function() {
       return (
         <div className="container">
-          <Header />
-          <h2>> {this.state.name}</h2>
+          <Header className="text-color" />
+          <h2>{this.state.name}</h2>
           <Console ref="console"
             welcomeMessage={this.state.prompt}
             handler={this.run}

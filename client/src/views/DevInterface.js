@@ -16,6 +16,8 @@ class DevInterface extends Component {
     this.save = this.save.bind(this);
     this.fetchProgram = this.fetchProgram.bind(this);
     this.newProgram = this.newProgram.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handlePromptChange = this.handlePromptChange.bind(this);
   }
 
   newProgram() {
@@ -37,14 +39,16 @@ class DevInterface extends Component {
     this.newProgram();
   }
 
-  save(name,prompt,callback) {
+  save(callback) {
     var payload = {
-      name: name,
-      prompt: prompt,
+      name: this.state.program_name,
+      prompt: this.state.program_prompt,
       link: this.state.program_link,
       program: this.state.code,
       token: localStorage.getItem('accountData')
     }
+
+    console.log(payload);
 
     fetch('/saveprogram', {
       method: 'POST',
@@ -64,6 +68,15 @@ class DevInterface extends Component {
         console.log('failed');
       }
      });
+  }
+
+  handleNameChange(e) {
+    console.log(e.target.value);
+    this.setState({program_name:e.target.value});
+  }
+
+  handlePromptChange(e) {
+    this.setState({program_prompt:e.target.value});
   }
 
   fetchProgram(link,callback) {
@@ -105,6 +118,8 @@ class DevInterface extends Component {
           programName={this.state.program_name}
           programPrompt={this.state.program_prompt}
           fetchProgram={this.fetchProgram}
+          handleNameChange={this.handleNameChange}
+          handlePromptChange={this.handlePromptChange}
           newProgram={this.newProgram}
           link={this.state.program_link}
           programs={this.props.programs} />

@@ -64,3 +64,8 @@ div.react-console-message {
 	color: $message-color;
 	padding: 0.1em;
 }
+
+div.react-console-message-result {
+	color: $cursor-text-color;
+	padding: 0.1em;
+}

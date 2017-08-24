@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Header = () => (
-  <h2>BlckBx</h2>
+const Header = (props) => (
+  <h2 {...props}>BlckBx</h2>
 );
 
 export default Header;

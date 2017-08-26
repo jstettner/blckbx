@@ -11,7 +11,7 @@ const About = () => (
         This site was developed by <a className="light-sea" href='https://github.com/jstettner'>Jack Stettner</a>.
         <br/>
         <br/>
-        If you would like to support the program, Bitcoin donations are always welcome: <span className="light-sea">1ALPrNsBPkbTUQocF1sJbKoBq3NKFLjZts</span>.
+        If you would like to support the program, Bitcoin donations are always appreciated: <span className="light-sea">1ALPrNsBPkbTUQocF1sJbKoBq3NKFLjZts</span>.
       </h4>
       <h2 className="deeper-sea">Security</h2>
       <h4 className="text-color">

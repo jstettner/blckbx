@@ -18,6 +18,9 @@ const Instructions = () => (
         <br />
         Once your program is saved, click generate to make a custom link with your program running in the shell.
         <br />
+        <br/>
+        It's as simple as that.
+        <br/>
         <br />
         <span className="basic-grey">
           Tip: You can log back in and edit your programs at any time, any previous links you have shared will automatically update with any code, name, or prompt changed you have made.

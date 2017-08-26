@@ -71,7 +71,7 @@ let Programview = createClass({
         <div className="progameview">
           <Header />
           <div className="container">
-            <h2>{this.state.name}</h2>
+            <h2 className="deeper-sea">{this.state.name}</h2>
             <Console ref="console"
               welcomeMessage={this.state.prompt}
               handler={this.run}

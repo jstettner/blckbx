@@ -11,14 +11,14 @@ div.react-console-container {
 	max-width: 100%;
 	box-sizing: border-box;
 	height: 20em;
-	background: $background-color;
+	background: $dark-grey;
 	padding: 0.5em;
 	overflow: auto;
 	white-space: pre;
 }
 
 div.react-console-prompt-box {
-	color: $prompt-color;
+	color: $light-sea;
 }
 
 span.react-console-prompt-label {
@@ -61,11 +61,11 @@ div.react-console-focus span.react-console-cursor-idle {
 }
 
 div.react-console-message {
-	color: $message-color;
+	color: $deep-sea;
 	padding: 0.1em;
 }
 
 div.react-console-message-result {
-	color: $cursor-text-color;
+	color: $deeper-sea;
 	padding: 0.1em;
 }

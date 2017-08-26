@@ -31,7 +31,7 @@ class IDE extends Component {
             </Button>
           </Link>
         </div>
-        <div className="mb-10 mid-grey">Note: You must save before generating if you made changes</div>
+        <div className="mb-10 basic-grey">Note: You must save before generating if you made changes</div>
         <AceEditor
           className="mt-10"
           mode="javascript"

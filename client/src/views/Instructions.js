@@ -8,7 +8,7 @@ import 'brace/theme/chaos';
 
 const Instructions = () => (
   <div className="instructions">
-    <Header />
+    <Header toApp={true} />
     <div className="container">
       <h1 className="light-sea">Help</h1>
       <h2 className="deeper-sea">What is BlckBx?</h2>

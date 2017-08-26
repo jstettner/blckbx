@@ -3,7 +3,7 @@ import Header from '../components/Header';
 
 const About = () => (
   <div className="about">
-    <Header />
+    <Header toApp={true}/>
     <div className="container">
       <h1 className="light-sea">About</h1>
       <h2 className="deeper-sea">Developer</h2>

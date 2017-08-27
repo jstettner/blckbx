@@ -15,7 +15,7 @@ const Instructions = () => (
       <h4 className="text-color">
         BlckBx is a platform for devs by devs. It allows for the quick scripting of single applications, with no UI needed.
         <br />
-        Users can draft and send small algorithms to friends/coworkers who need to programming knowledge to use.
+        Users can draft and send small algorithms to friends/coworkers who need no programming knowledge to use.
       </h4>
       <h2 className="deeper-sea">How do I get started?</h2>
       <h4 className="text-color">

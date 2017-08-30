@@ -2,6 +2,7 @@ import React from 'react';
 import Console from 'react-console-component';
 import createClass from 'create-react-class';
 import Header from '../components/Header';
+import ReactGA from 'react-ga';
 
 let Programview = createClass({
   getInitialState: function() {
@@ -12,6 +13,7 @@ let Programview = createClass({
     };
   },
   componentDidMount: function() {
+    ReactGA.pageview(window.location.pathname);
     var payload = {
       link: this.state.link
     }

@@ -9,6 +9,7 @@ import ReactGA from 'react-ga';
 
 class Routes extends Component {
   constructor() {
+    super();
     ReactGA.initialize('UA-105645785-1');
   }
 

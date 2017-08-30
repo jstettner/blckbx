@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import IDE from '../components/IDE';
 import Browser from '../components/Browser';
+import ReactGA from 'react-ga';
 
 class DevInterface extends Component {
   constructor() {
@@ -37,6 +38,7 @@ class DevInterface extends Component {
 
   componentDidMount() {
     this.newProgram();
+    ReactGA.pageview(window.location.pathname);
   }
 
   save(callback) {

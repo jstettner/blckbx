@@ -6,7 +6,7 @@ const Header = (props) => (
   <div className="header">
     <div className="container height-100">
       <div className="height-100 flex-center">
-        <div className={"flex-row width-100 flex-center flex-between"}>
+        <div className={"flex-row width-100 flex-center flex-between flex-column-mobile"}>
           <div className="flex-row flex-center">
             <Link to="/"><h1 className="light-sea mtn mbn">BlckBx</h1></Link>
             <Link to="/instructions"><h2 className="light-sea pll mtn mbn">Help</h2></Link>

@@ -5,7 +5,13 @@ import Instructions from './views/Instructions';
 import Programview from './views/Programview';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+import ReactGA from 'react-ga';
+
 class Routes extends Component {
+  constructor() {
+    ReactGA.initialize('UA-105645785-1');
+  }
+
   render() {
     return(
       <BrowserRouter>

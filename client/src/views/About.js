@@ -32,7 +32,7 @@ const About = () => (
         This site is a work in progress, if you have any suggestions, or discover and bugs, please email <a href="mailto:blckbx.suggestions@gmail.com" className="light-sea">blckbx.suggestions@gmail.com</a>.
         <br/>
         <br/>
-        Support for other languages are coming soon.
+        Support for other languages is coming soon.
       </h4>
     </div>
   </div>

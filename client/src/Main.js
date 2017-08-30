@@ -27,7 +27,7 @@ class Main extends Component {
     .map(k => esc(k) + '=' + esc(data[k]))
     .join('&');
 
-    fetch(("/tokenauth/?" + query), {
+    fetch(("api/tokenauth/?" + query), {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

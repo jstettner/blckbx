@@ -33,7 +33,7 @@ const Instructions = () => (
       </h4>
       <h2 className="deeper-sea">Examples uses:</h2>
       <h4 className="text-color">
-        <Link className="deep-sea" to="/program/59a0d6923d76cc02626b7bf2"> <Glyphicon glyph="link" className="prm" />Averaging numbers </Link>
+        <Link className="deep-sea" to="/program/59a5f5a81c39c222df33fed9"> <Glyphicon glyph="link" className="prm" />Averaging numbers </Link>
         <AceEditor
           className="mt-10"
           mode="javascript"
@@ -46,7 +46,7 @@ const Instructions = () => (
           editorProps={{$blockScrolling: true}}
         />
         <br/>
-        <Link className="deep-sea" to="/program/59a1dfe325d66b0e2321041b"> <Glyphicon glyph="link" className="prm" />Fibonacci Generator </Link>
+        <Link className="deep-sea" to="/program/59a6045218abb13b79939503"> <Glyphicon glyph="link" className="prm" />Fibonacci Generator </Link>
         <AceEditor
           className="mt-10"
           mode="javascript"
@@ -59,7 +59,7 @@ const Instructions = () => (
           editorProps={{$blockScrolling: true}}
         />
         <br/>
-        <Link className="deep-sea" to="/program/59a1d7a43d76cc02626b7bf9"> <Glyphicon glyph="link" className="prm" />Fortune Teller </Link>
+        <Link className="deep-sea" to="/program/59a604c318abb13b79939505"> <Glyphicon glyph="link" className="prm" />Fortune Teller </Link>
         <AceEditor
           className="mt-10"
           mode="javascript"
@@ -72,7 +72,7 @@ const Instructions = () => (
           editorProps={{$blockScrolling: true}}
         />
         <br/>
-        <Link className="deep-sea" to="/program/59a1d9d43d76cc02626b7bfc"> <Glyphicon glyph="link" className="prm" />Secret Message </Link>
+        <Link className="deep-sea" to="/program/59a6050618abb13b79939507"> <Glyphicon glyph="link" className="prm" />Secret Message </Link>
         <AceEditor
           className="mt-10"
           mode="javascript"

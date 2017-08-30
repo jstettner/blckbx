@@ -16,7 +16,7 @@ let Programview = createClass({
       link: this.state.link
     }
 
-    fetch(('/initializeprogram'), {
+    fetch(('/api/initializeprogram'), {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -42,7 +42,7 @@ let Programview = createClass({
       params: params
     }
 
-    fetch(('/runprogram'), {
+    fetch(('/api/runprogram'), {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

@@ -33,13 +33,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 //     next();
 // });
 
-app.use('/signup', signup);
-app.use('/login/*', login);
-app.use('/tokenauth', tokenauth);
-app.use('/saveprogram', saveprogram);
-app.use('/getprogram', getprogram);
-app.use('/runprogram', runprogram);
-app.use('/initializeprogram', initializeprogram);
+app.use('/api/signup', signup);
+app.use('/api/login/*', login);
+app.use('/api/tokenauth', tokenauth);
+app.use('/api/saveprogram', saveprogram);
+app.use('/api/getprogram', getprogram);
+app.use('/api/runprogram', runprogram);
+app.use('/api/initializeprogram', initializeprogram);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

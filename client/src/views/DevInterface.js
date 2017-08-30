@@ -50,7 +50,7 @@ class DevInterface extends Component {
 
     console.log(payload);
 
-    fetch('/saveprogram', {
+    fetch('api/saveprogram', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -85,7 +85,7 @@ class DevInterface extends Component {
       token: localStorage.getItem('accountData')
     }
 
-    fetch(('/getProgram'), {
+    fetch(('api/getProgram'), {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

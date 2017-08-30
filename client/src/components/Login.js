@@ -69,7 +69,7 @@ class Login extends Component {
     .map(k => esc(k) + '=' + esc(data[k]))
     .join('&');
 
-    fetch(("/login/?" + query), {
+    fetch(("api/login/?" + query), {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -94,7 +94,7 @@ class Login extends Component {
       pass: this.state.pass
     }
 
-    fetch('/signup', {
+    fetch('api/signup', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

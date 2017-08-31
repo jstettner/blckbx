@@ -16,13 +16,13 @@ router.post('/', function(req, res, next) {
 
   var response = {
     valid: false,
-    errors: []
+    error: []
   };
 
   UserSchema.find({ 'user': username }, function (err, users) {
     if (err) response.errors.push(err);
     if (users.length > 0) {
-      response.errors.push('already exists');
+      response.error.push('already exists');
     }
 
     // only alpha, underscore, dot, between 6 and 20

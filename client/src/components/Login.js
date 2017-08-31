@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 
 class Login extends Component {
   constructor() {
@@ -7,12 +7,16 @@ class Login extends Component {
     this.state = {
       mode: 'login',
       validationErrors: {
-        user: { taken: false, inval: true },
+        user: { inval: true },
         pass: { inval: true },
         confirm: { inval: true }
       },
       messages: {
         registered: false
+      },
+      responseErrors: {
+        user: { taken: false, notfound: false },
+        password: { wrong: false}
       },
       user: "",
       pass: "",
@@ -25,12 +29,16 @@ class Login extends Component {
     this.setState({
       mode: 'signup',
       validationErrors: {
-        user: { taken: false, inval: true },
+        user: { inval: true },
         pass: { inval: true },
         confirm: { inval: true }
       },
       messages: {
         registered: false
+      },
+      responseErrors: {
+        user: { taken: false, notfound: false },
+        password: { wrong: false}
       },
       user: "",
       pass: "",
@@ -43,12 +51,16 @@ class Login extends Component {
     this.setState({
       mode: 'login',
       validationErrors: {
-        user: { taken: false, inval: true },
+        user: { inval: true },
         pass: { inval: true },
         confirm: { inval: true }
       },
       messages: {
         registered: false
+      },
+      responseErrors: {
+        user: { taken: false, notfound: false },
+        password: { wrong: false}
       },
       user: "",
       pass: "",
@@ -58,6 +70,12 @@ class Login extends Component {
   }
 
   authAccount() {
+    this.setState({
+      responseErrors: {
+        user: { taken: false, notfound: false },
+        password: { wrong: false}
+      }
+    });
     const data = {
       user: this.state.user,
       pass: this.state.pass,
@@ -83,7 +101,27 @@ class Login extends Component {
         this.props.onLogin(responseJson.token);
         this.props.onHide();
       } else {
-        console.log(responseJson.error);
+        if(responseJson.error === 'user not found') {
+          this.setState({
+            responseErrors: {
+              ...this.state.responseErrors,
+              user: {
+                ...this.state.responseErrors.user,
+                notfound: true
+              }
+            }
+          });
+        } else if(responseJson.error === 'password incorrect') {
+          this.setState({
+            responseErrors: {
+              ...this.state.responseErrors,
+              password: {
+                ...this.state.responseErrors.pass,
+                wrong: true
+              }
+            }
+          });
+        }
       }
     });
   }
@@ -111,7 +149,17 @@ class Login extends Component {
           }
         }, () => this.authAccount());
       } else {
-        console.log(responseJson.errors);
+        if(responseJson.errors.includes('already exists')) {
+          this.setState({
+            responseErrors: {
+              ...this.state.responseErrors,
+              user: {
+                ...this.state.responseErrors.user,
+                taken: true
+              }
+            }
+          });
+        }
       }
      });
   }
@@ -119,8 +167,7 @@ class Login extends Component {
   checkValid(name, value) {
     if(this.state.mode === 'signup') {
       this.setState({
-        invalid: (this.state.validationErrors.user.taken ||
-          this.state.validationErrors.user.inval ||
+        invalid: (this.state.validationErrors.user.inval ||
           this.state.validationErrors.pass.inval ||
           this.state.validationErrors.confirm.inval)
       });
@@ -206,15 +253,21 @@ class Login extends Component {
             <Modal.Title id="contained-modal-title-lg" className="light-sea">Login</Modal.Title>
           </Modal.Header>
           <Modal.Body className="flex-column flex-center">
-            <form className="flex-column flex-center width-70">
-              <label className="pv-5 input-group">
-                <span className="prm input-group-addon">Username:</span>
-                <input className="form-control" type="text" name="user" value={this.state.user} onChange={this.handleInputChange.bind(this)}/>
-              </label>
-              <label className="pv-5 input-group">
-                <span className="prm input-group-addon">Password:</span>
-                <input className="form-control" type="password" name="pass" value={this.state.pass} onChange={this.handleInputChange.bind(this)}/>
-              </label>
+            <form className="flex-column flex-center width-70 width-100-mobile width-100-tablet">
+              <FormGroup className="width-100 width-100-mobile width-100-tablet" validationState={!this.state.user ? 'error' : 'success'}>
+                <ControlLabel className="f-18">Username:</ControlLabel>
+                <FormControl type="text" name="user" value={this.state.user} onChange={this.handleInputChange.bind(this)}/>
+                {!this.state.user && <HelpBlock>Cannot be blank.</HelpBlock>}
+              </FormGroup>
+              <FormGroup className="width-100 width-100-mobile width-100-tablet" validationState={!this.state.pass ? 'error' : 'success'}>
+                <ControlLabel className="f-18">Password:</ControlLabel>
+                <FormControl type="password" name="pass" value={this.state.pass} onChange={this.handleInputChange.bind(this)}/>
+                {!this.state.pass && <HelpBlock>Cannot be blank.</HelpBlock>}
+              </FormGroup>
+              <FormGroup className="mbn" validationState={'error'}>
+                {this.state.responseErrors.user.notfound && <HelpBlock className="f-18">User not found</HelpBlock>}
+                {this.state.responseErrors.password.wrong && <HelpBlock className="f-18">Password incorrect</HelpBlock>}
+              </FormGroup>
             </form>
           </Modal.Body>
           <Modal.Footer>
@@ -235,19 +288,25 @@ class Login extends Component {
             <Modal.Title id="contained-modal-title-lg" className="light-sea">Signup</Modal.Title>
           </Modal.Header>
           <Modal.Body className="flex-column flex-center">
-            <form className="flex-column flex-center text-center width-70">
-              <label className="pv-5 input-group">
-                <span className="prm input-group-addon">Username:</span>
-                <input className="form-control" type="text" name="user" value={this.state.user} onChange={this.handleInputChange.bind(this)}/>
-              </label>
-              <label className="pv-5 input-group">
-                <span className="prm input-group-addon">Password:</span>
-                <input className="form-control" type="password" name="pass" value={this.state.pass} onChange={this.handleInputChange.bind(this)}/>
-              </label>
-              <label className="pv-5 input-group">
-                <span className="prm input-group-addon">Retype Password:</span>
-                <input className="form-control" type="password" name="confirm" value={this.state.confirm} onChange={this.handleInputChange.bind(this)}/>
-              </label>
+            <form className="flex-column flex-center width-70 width-100-tablet width-100-mobile">
+              <FormGroup className="width-100 width-100-mobile width-100-tablet" validationState={this.state.validationErrors.user.inval ? 'error' : 'success'}>
+                <ControlLabel className="f-18">Username:</ControlLabel>
+                <FormControl type="text" name="user" value={this.state.user} onChange={this.handleInputChange.bind(this)}/>
+                {this.state.validationErrors.user.inval && <HelpBlock>Username must be between 6 to 20 characters, and contain only alphanumeric characters, underscores, and dots. Symbols can't be consecutive, leading, or trailing.</HelpBlock>}
+              </FormGroup>
+              <FormGroup className="width-100 width-100-mobile width-100-tablet" validationState={this.state.validationErrors.pass.inval ? 'error' : 'success'}>
+                <ControlLabel className="f-18">Password:</ControlLabel>
+                <FormControl type="password" name="pass" value={this.state.pass} onChange={this.handleInputChange.bind(this)}/>
+                {this.state.validationErrors.pass.inval && <HelpBlock>Password must be 8 characters or more, and contain at least one digit.</HelpBlock>}
+              </FormGroup>
+              <FormGroup className="width-100 width-100-mobile width-100-tablet" validationState={this.state.validationErrors.confirm.inval ? 'error' : 'success'}>
+                <ControlLabel className="f-18">Retype Password:</ControlLabel>
+                <FormControl type="password" name="confirm" value={this.state.confirm} onChange={this.handleInputChange.bind(this)}/>
+                {this.state.validationErrors.confirm.inval && <HelpBlock>Must match password.</HelpBlock>}
+              </FormGroup>
+              <FormGroup className="mbn" validationState={'error'}>
+                {this.state.responseErrors.user.taken && <HelpBlock className="f-18">Username taken</HelpBlock>}
+              </FormGroup>
             </form>
             {this.state.messages.registered && (
               <p className="text-center ptl">Successfully registered! Please head over to the <a onClick={() => this.toLogin()}>login</a> page, and sign in with your new account.</p>

@@ -30,4 +30,9 @@ body {
     font-weight: 200;
     font-size: 21px;
   }
+
+  hr{
+    border-top: 2px solid $light-sea;
+    margin-top: 10px;
+  }
 }

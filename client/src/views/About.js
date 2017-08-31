@@ -13,6 +13,7 @@ class About extends Component {
         <Header toApp={true}/>
         <div className="container">
           <h1 className="light-sea">About</h1>
+          <hr/>
           <h2 className="deeper-sea">Developer</h2>
           <h4 className="text-color">
             This site was developed by <a className="light-sea" href='https://github.com/jstettner'>Jack Stettner</a>.

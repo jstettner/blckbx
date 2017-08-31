@@ -18,6 +18,7 @@ class Instructions extends Component {
         <Header toApp={true} />
         <div className="container">
           <h1 className="light-sea">Help</h1>
+          <hr/>
           <h2 className="deeper-sea">What is BlckBx?</h2>
           <h4 className="text-color">
             BlckBx is a platform for devs by devs. It allows for the quick scripting of single applications, with no UI needed.

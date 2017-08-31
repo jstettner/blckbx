@@ -112,7 +112,9 @@ class DevInterface extends Component {
 
   render() {
     return(
-      <div className="dev ptm">
+      <div className="dev">
+        <h1 className="light-sea">Your Workshop</h1>
+        <hr/>
         <IDE
           code={this.state.code}
           save={this.save}

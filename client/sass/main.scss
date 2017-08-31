@@ -17,7 +17,7 @@
 body {
   color: #f9f9f9;
   background-color: #333333;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   input, .jumbotron, .modal-content {
     color: #333333;
   }
@@ -27,8 +27,7 @@ body {
   }
 
   h4 {
-    // line-height: 25px;
-    font-size: 19px;
-    // letter-spacing: .4px;
+    font-weight: 200;
+    font-size: 21px;
   }
 }

@@ -25,6 +25,18 @@ class Login extends Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({
+      mode: (this.props.mode || '')
+    })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      mode: nextProps.mode
+    });
+  }
+
   toSignup() {
     this.setState({
       mode: 'signup',
@@ -40,8 +52,6 @@ class Login extends Component {
         user: { taken: false, notfound: false },
         password: { wrong: false}
       },
-      user: "",
-      pass: "",
       confirm: "",
       invalid: true
     });
@@ -62,8 +72,6 @@ class Login extends Component {
         user: { taken: false, notfound: false },
         password: { wrong: false}
       },
-      user: "",
-      pass: "",
       confirm: "",
       invalid: true
     });
@@ -265,8 +273,8 @@ class Login extends Component {
                 {!this.state.pass && <HelpBlock>Cannot be blank.</HelpBlock>}
               </FormGroup>
               <FormGroup className="mbn" validationState={'error'}>
-                {this.state.responseErrors.user.notfound && <HelpBlock className="f-18">User not found</HelpBlock>}
-                {this.state.responseErrors.password.wrong && <HelpBlock className="f-18">Password incorrect</HelpBlock>}
+                {this.state.responseErrors.user.notfound && <HelpBlock className="f-18">User not found.</HelpBlock>}
+                {this.state.responseErrors.password.wrong && <HelpBlock className="f-18">Password incorrect.</HelpBlock>}
               </FormGroup>
             </form>
           </Modal.Body>
@@ -305,7 +313,7 @@ class Login extends Component {
                 {this.state.validationErrors.confirm.inval && <HelpBlock>Must match password.</HelpBlock>}
               </FormGroup>
               <FormGroup className="mbn" validationState={'error'}>
-                {this.state.responseErrors.user.taken && <HelpBlock className="f-18">Username taken</HelpBlock>}
+                {this.state.responseErrors.user.taken && <HelpBlock className="f-18">Username taken.</HelpBlock>}
               </FormGroup>
             </form>
             {this.state.messages.registered && (

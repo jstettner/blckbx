@@ -15,9 +15,9 @@ class Landing extends Component {
         <h2 className="mts mbm">Shareable scripts for <span className="deep-sea">non-devs.</span></h2>
         <h4>If you've ever wanted a quick and easy way to share a script with a colleague or friend without the hassle of building a UI, then BlckBx is the tool for you.</h4>
         <h4>Now its easy to distribute simple utility algorithms and much more. Head over to the <Link to="/instructions" className="deep-sea">Help</Link> section for more info and program ideas.</h4>
-        <h4>To get started, click the login button below.</h4>
-        <Button className="btn-dark mtm" onClick={() => this.props.updateLogin(true)}>
-          Login
+        <h4>To get started, signup below.</h4>
+        <Button className="btn-dark mtm" onClick={() => this.props.updateLogin()}>
+          Signup
         </Button>
       </Jumbotron>
     );

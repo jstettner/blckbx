@@ -13,6 +13,7 @@ class App extends Component {
 
     this.setName = this.setName.bind(this);
     this.logout = this.logout.bind(this);
+    this.login = this.login.bind(this);
   }
 
   setName(name,signedIn) {
@@ -27,10 +28,14 @@ class App extends Component {
     this.child.logout();
   }
 
+  login() {
+    this.child.login();
+  }
+
   render() {
     return (
       <div className="App">
-        <Header name={this.state.name} signedIn={this.state.signedIn} logout={this.logout}/>
+        <Header name={this.state.name} signedIn={this.state.signedIn} logout={this.logout} login={this.login}/>
         <div className="container">
           <Main setParent={this.setName} ref={ref => (this.child = ref)}/>
         </div>

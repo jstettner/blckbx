@@ -10,10 +10,13 @@ class Main extends Component {
       isLoggedIn: false,
       loginShowing: false,
       user: null,
-      programs: []
+      programs: [],
+      mode: 'login'
     }
 
     this.authenticateToken = this.authenticateToken.bind(this);
+    this.signup = this.signup.bind(this);
+    this.login = this.login.bind(this);
   }
 
   authenticateToken(token) {
@@ -62,6 +65,20 @@ class Main extends Component {
     this.props.setParent(this.state.user,false);
   }
 
+  login() {
+    this.setState({
+      mode: 'login'
+    });
+    this.loginShowingUpdate(true)
+  }
+
+  signup() {
+    this.setState({
+      mode: 'signup'
+    });
+    this.loginShowingUpdate(true);
+  }
+
   loginShowingUpdate(value) {
     this.setState({
       loginShowing: value
@@ -77,10 +94,10 @@ class Main extends Component {
           </div>
         ) : (
           <div className="login"> {/* Logged out State */}
-            <Landing updateLogin={this.loginShowingUpdate.bind(this)}/>
+            <Landing updateLogin={this.signup}/>
           </div>
         )}
-        <Login show={this.state.loginShowing} onLogin={this.authenticateToken.bind(this)} onHide={() => this.loginShowingUpdate(false)} />
+        <Login show={this.state.loginShowing} onLogin={this.authenticateToken.bind(this)} onHide={() => this.loginShowingUpdate(false)} mode={this.state.mode}/>
       </div>
     );
   }

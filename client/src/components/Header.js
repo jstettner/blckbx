@@ -12,19 +12,24 @@ const Header = (props) => (
             <Link to="/instructions"><h2 className="light-sea pll mtn mbn">Help</h2></Link>
             <Link to="/about"><h2 className="light-sea pll mtn mbn">About</h2></Link>
           </div>
-          {props.signedIn &&
-            <div className="flex-row flex-center">
-              <h4 className="text-color prm mtn mbn">Signed in as: <span className="light-sea">{props.name}</span>!</h4>
-              <Button className="btn-dark" onClick={() => props.logout()}>
-                <Glyphicon className="prm" glyph="alert" />Logout
-              </Button>
-            </div>
-          }
-          {props.toApp &&
+          {props.toApp ? (
             <div className=" flex-row flex-center">
               <Link to="/"><h4 className="text-color prm mtn mbn"><Glyphicon className="prs" glyph="link" /> Back to app <span className="light-sea">{props.name}</span></h4></Link>
             </div>
-          }
+          ) : (
+            props.signedIn ? (
+              <div className="flex-row flex-center">
+                <h4 className="text-color prm mtn mbn">Signed in as: <span className="light-sea">{props.name}</span>!</h4>
+                <Button className="btn-dark" onClick={() => props.logout()}>
+                  <Glyphicon className="prm" glyph="alert" />Logout
+                </Button>
+              </div>
+            ) : (
+              <Button className="btn-dark mtm" onClick={() => props.login()}>
+                Login
+              </Button>
+            )
+          )}
         </div>
       </div>
     </div>

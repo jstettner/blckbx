@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Jumbotron } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import ReactGA from 'react-ga';
 
 class Landing extends Component {
@@ -10,9 +11,12 @@ class Landing extends Component {
   render() {
     return(
       <Jumbotron className="mtl">
-        <h1>Welcome to <span className="light-sea">BlckBx!</span></h1>
-        <p>Shareable scripts for <span className="deep-sea">non-devs.</span></p>
-        <Button className="btn-dark" onClick={() => this.props.updateLogin(true)}>
+        <h1 className="mbn">Welcome to <span className="light-sea">BlckBx!</span></h1>
+        <h2 className="mts mbm">Shareable scripts for <span className="deep-sea">non-devs.</span></h2>
+        <h4>If you've ever wanted a quick and easy way to share a script with a colleague or friend without the hassle of building a UI, then BlckBx is the tool for you.</h4>
+        <h4>Now its easy to distribute simple utility algorithms and much more. Head over to the <Link to="/instructions" className="deep-sea">Help</Link> section for more info and program ideas.</h4>
+        <h4>To get started, click the login button below.</h4>
+        <Button className="btn-dark mtm" onClick={() => this.props.updateLogin(true)}>
           Login
         </Button>
       </Jumbotron>

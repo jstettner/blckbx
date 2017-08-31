@@ -13,21 +13,23 @@ const Header = (props) => (
             <Link to="/about"><h2 className="light-sea pll mtn mbn">About</h2></Link>
           </div>
           {props.toApp ? (
-            <div className=" flex-row flex-center">
+            <div className="flex-row flex-center mv-5">
               <Link to="/"><h4 className="text-color prm mtn mbn"><Glyphicon className="prs" glyph="link" /> Back to app <span className="light-sea">{props.name}</span></h4></Link>
             </div>
           ) : (
             props.signedIn ? (
-              <div className="flex-row flex-center">
+              <div className="flex-row flex-center mv-5">
                 <h4 className="text-color prm mtn mbn">Signed in as: <span className="light-sea">{props.name}</span>!</h4>
                 <Button className="btn-dark" onClick={() => props.logout()}>
                   <Glyphicon className="prm" glyph="alert" />Logout
                 </Button>
               </div>
             ) : (
-              <Button className="btn-dark mtm" onClick={() => props.login()}>
-                Login
-              </Button>
+              <div className="mv-5">
+                <Button className="btn-dark" onClick={() => props.login()}>
+                  Login
+                </Button>
+              </div>
             )
           )}
         </div>

@@ -5,4 +5,8 @@
   background-color: #444444;
 
   text-decoration: none;
+
+  @media (max-width: 767px) {
+    height: 100px;
+  }
 }

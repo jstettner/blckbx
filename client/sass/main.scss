@@ -11,6 +11,7 @@
 @import 'pview';
 @import 'idebrowse';
 @import 'header';
+@import 'footer';
 @import '../node_modules/codemirror/lib/codemirror.css';
 @import '../node_modules/codemirror/theme/monokai.css';
 
@@ -35,4 +36,10 @@ body {
     border-top: 2px solid $light-sea;
     margin-top: 10px;
   }
+}
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }

@@ -44,6 +44,13 @@ div.react-console-focus span.react-console-cursor-idle {
 	animation: react-console-cursor-animation 1s infinite;
 }
 
+.react-console-typer {
+	position: absolute;
+	right: 0px;
+	height: 0px;
+	width: 0px;
+}
+
 @keyframes react-console-cursor-animation {
 	0% {
 		background: $cursor-color;

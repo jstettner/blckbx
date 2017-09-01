@@ -20,6 +20,7 @@ class IDE extends Component {
   render() {
     return(
       <div>
+        <h2 className="deeper-sea">Current Program: {this.props.name || 'Untitled'}</h2>
         <div className="flex-row tools">
           <Button className="mv-5 mr-5 width-20 btn-mid" onClick={() => this.props.save()}>
             <Glyphicon glyph="cloud-upload" /> Save

@@ -119,6 +119,7 @@ class DevInterface extends Component {
           code={this.state.code}
           save={this.save}
           link={this.state.program_link}
+          name={this.state.program_name}
           updateCode={this.updateCode} />
         <Browser
           save={this.save}

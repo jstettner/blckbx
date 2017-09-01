@@ -7,13 +7,13 @@ const Header = (props) => (
     <div className="container height-100">
       <div className="height-100 flex-center">
         <div className={"flex-row width-100 width-100-tablet width-100-mobile flex-center flex-between flex-between-tablet flex-column-mobile"}>
-          <div className="flex-row flex-center">
+          <div className="flex-row flex-center pt-5">
             <Link to="/"><h1 className="light-sea mtn mbn">BlckBx</h1></Link>
             <Link to="/instructions"><h2 className="light-sea pll mtn mbn">Help</h2></Link>
             <Link to="/about"><h2 className="light-sea pll mtn mbn">About</h2></Link>
           </div>
           {props.toApp ? (
-            <div className="flex-row flex-center mv-5">
+            <div style={{minHeight: '38px'}} className="flex-row flex-center mv-5">
               <Link to="/"><h4 className="text-color prm mtn mbn"><Glyphicon className="prs" glyph="link" /> Back to app <span className="light-sea">{props.name}</span></h4></Link>
             </div>
           ) : (

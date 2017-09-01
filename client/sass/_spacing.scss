@@ -129,6 +129,7 @@ $multiplier: 5;
   }
 }
 
+
 @for $i from 1 through 20 {
   .ph-#{$i * $multiplier} {
     padding-left: #{$i * $multiplier}px;
@@ -197,6 +198,38 @@ $multiplier: 5;
     .pv-#{$i * $multiplier}-mobile {
       padding-top: #{$i * $multiplier}px;
       padding-bottom: #{$i * $multiplier}px;
+    }
+  }
+}
+
+@for $i from 1 through 10 {
+  @media (max-width: 767px) {
+    .pb-#{$i * $multiplier}-mobile {
+      padding-bottom: #{$i * $multiplier}px;
+    }
+  }
+}
+
+@for $i from 1 through 10 {
+  @media (max-width: 767px) {
+    .pt-#{$i * $multiplier}-mobile {
+      padding-top: #{$i * $multiplier}px;
+    }
+  }
+}
+
+@for $i from 1 through 10 {
+  @media (max-width: 767px) {
+    .pl-#{$i * $multiplier}-mobile {
+      padding-left: #{$i * $multiplier}px;
+    }
+  }
+}
+
+@for $i from 1 through 10 {
+  @media (max-width: 767px) {
+    .pr-#{$i * $multiplier}-mobile {
+      padding-right: #{$i * $multiplier}px;
     }
   }
 }

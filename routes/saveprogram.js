@@ -70,7 +70,6 @@ router.post('/', function(req, res, next) {
                 }
               });
             } else {
-              response.errors.push('program doesn\'t exist or incorrect owner');
               res.json(response);
             }
           });

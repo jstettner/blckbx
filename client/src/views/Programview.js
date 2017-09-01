@@ -71,7 +71,7 @@ let Programview = createClass({
   render: function() {
       return (
         <div className="progameview">
-          <Header />
+          <Header toApp={true}/>
           <div className="container">
             <h2 className="deeper-sea">{this.state.name}</h2>
             <Console ref="console"

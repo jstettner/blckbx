@@ -4,7 +4,6 @@ import { Glyphicon, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import 'brace/mode/javascript';
-import 'brace/theme/chaos';
 
 class IDE extends Component {
   constructor(props) {

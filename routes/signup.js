@@ -16,7 +16,7 @@ router.post('/', function(req, res, next) {
 
   var response = {
     valid: false,
-    error: []
+    errors: []
   };
 
   UserSchema.find({ 'user': username }, function (err, users) {

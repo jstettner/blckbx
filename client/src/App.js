@@ -17,7 +17,6 @@ class App extends Component {
   }
 
   setName(name,signedIn) {
-    console.log(name);
     this.setState({
       name: name,
       signedIn: signedIn

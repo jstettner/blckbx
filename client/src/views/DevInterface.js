@@ -50,8 +50,6 @@ class DevInterface extends Component {
       token: localStorage.getItem('accountData')
     }
 
-    console.log(payload);
-
     fetch('api/saveprogram', {
       method: 'POST',
       headers: {

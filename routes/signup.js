@@ -22,7 +22,7 @@ router.post('/', function(req, res, next) {
   UserSchema.find({ 'user': username }, function (err, users) {
     if (err) response.errors.push(err);
     if (users.length > 0) {
-      response.error.push('already exists');
+      response.errors.push('already exists');
     }
 
     // only alpha, underscore, dot, between 6 and 20

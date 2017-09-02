@@ -12,6 +12,7 @@
 @import 'idebrowse';
 @import 'header';
 @import 'footer';
+@import 'utility';
 @import '../node_modules/codemirror/lib/codemirror.css';
 @import '../node_modules/codemirror/theme/monokai.css';
 
@@ -35,6 +36,11 @@ body {
   hr{
     border-top: 2px solid $light-sea;
     margin-top: 10px;
+  }
+
+  button {
+    border-style: none;
+    background: none;
   }
 }
 

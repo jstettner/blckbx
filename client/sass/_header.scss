@@ -2,11 +2,19 @@
   width: 100%;
   height: 100%;
   height: 75px;
+  -webkit-transition: height 1s;
+  -moz-transition: height 1s;
+  -ms-transition: height 1s;
+  -o-transition: height 1s;
+  transition: height 1s;
   background-color: #444444;
+  overflow: hidden;
 
   text-decoration: none;
+}
 
-  @media (max-width: 767px) {
-    height: 115px;
+@media (max-width: 767px) {
+  .open {
+    height: 190px;
   }
 }

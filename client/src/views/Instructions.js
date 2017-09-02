@@ -72,7 +72,7 @@ class Instructions extends Component {
               className="mt-10"
               mode="javascript"
               theme="chaos"
-              value={"function main(x) {\r\n    x = parseInt(x);\r\n    var rand = Math.floor((Math.random() * 30) + 1);\r\n    var fortunes = [\r\n        \'You will have the best year of your life\',\r\n        \'Tomorrow will be bad, but the next day will make up for it\',\r\n        \'Good luck is right around the corner\',\r\n        \'You will get a promotion\',\r\n        \'Be careful for the next few days\',\r\n        \'You will have great success in what you least expect\'\r\n        ];\r\n        \r\n    var res = fortunes[(x*rand)%6];\r\n\treturn res;\r\n}\r\n"}
+              value={"function main(x) {\r\n    x = parseInt(x);\r\n    var rand = Math.floor((Math.random() * 30) + 1);\r\n    var fortunes = [\r\n        'You will have the best year of your life',\r\n        'Tomorrow will be bad, but the next day will make up for it',\r\n        'Good luck is right around the corner',\r\n        'You will get a promotion',\r\n        'Be careful for the next few days',\r\n        'You will have great success in what you least expect'\r\n        ];\r\n        \r\n    var res = fortunes[(x*rand)%6];\r\n\treturn res;\r\n}\r\n"}
               name="ace"
               width="100%"
               height="200px"
@@ -85,7 +85,7 @@ class Instructions extends Component {
               className="mt-10"
               mode="javascript"
               theme="chaos"
-              value={"function main(x) {\r\n    return (x===\'secretpass\' ? \'secret info\' : \'incorrect password\');\r\n}"}
+              value={"function main(x) {\r\n    return (x==='secretpass' ? 'secret info' : 'incorrect password');\r\n}"}
               name="ace"
               width="100%"
               height="200px"

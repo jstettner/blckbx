@@ -5,13 +5,13 @@ Must have mongdb, express, node, npm.
 `cd client && yarn install`
 
 # Dev
-## 1st tab
+- 1st tab
 `cd blckbx && mongod`
-## 2nd tab
+- 2nd tab
 `cd blckbx && yarn start`
-## 3rd tab
+- 3rd tab
 `cd blckbx && gulp`
-## 4th tab
+- 4th tab
 `cd blckbx/client && yarn start`
 
 # Build

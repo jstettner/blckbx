@@ -6,7 +6,7 @@ var s = new Sandbox({timeout:4000});
 
 var runprgm = function(code, params, callback) {
   // code = minify.js(code);
-  s.run(code + "main(" + params + ");", callback);
+  s.run(code + "main('" + params + "');", callback);
 }
 
 module.exports = runprgm;

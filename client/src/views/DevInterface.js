@@ -23,7 +23,7 @@ class DevInterface extends Component {
 
   newProgram() {
     this.setState({
-      code: "// Please define the main code in a function called main. This function can be used to call other functions.\n\nfunction main(x) {\n\treturn x;\n}\n",
+      code: "// Please define the main code in a function called main. This function can be used to call other functions.\n// All input is passed in as a STRING, and you should parse it as such.\n\nfunction main(x) {\n\treturn x;\n}\n",
       program_link: null,
       program_name: "",
       program_prompt: ""

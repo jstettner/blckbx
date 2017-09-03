@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import IDE from '../components/IDE';
 import Browser from '../components/Browser';
 import ReactGA from 'react-ga';
+import Warning from '../components/Warning';
 
 class DevInterface extends Component {
   constructor() {
@@ -10,12 +11,18 @@ class DevInterface extends Component {
       code: "",
       program_link: null,
       program_name: "",
-      program_prompt: ""
+      program_prompt: "",
+      del: {
+        show: false,
+        name: "",
+        link: ""
+      }
     }
 
     this.updateCode = this.updateCode.bind(this);
     this.save = this.save.bind(this);
     this.delete = this.delete.bind(this);
+    this.deleteModal = this.deleteModal.bind(this);
     this.fetchProgram = this.fetchProgram.bind(this);
     this.newProgram = this.newProgram.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -27,7 +34,12 @@ class DevInterface extends Component {
       code: "// Please define the main code in a function called main. This function can be used to call other functions.\n// All input is passed in as a STRING, and you should parse it as such.\n\nfunction main(x) {\n\treturn x;\n}\n",
       program_link: null,
       program_name: "",
-      program_prompt: ""
+      program_prompt: "",
+      del: {
+        show: false,
+        name: "",
+        link: ""
+      }
     });
   }
 
@@ -71,6 +83,16 @@ class DevInterface extends Component {
      });
   }
 
+  deleteModal(link, name) {
+    this.setState({
+      del: {
+        show: true,
+        name: name,
+        link: link
+      }
+    });
+  }
+
   delete(link) {
     var payload = {
       link: link,
@@ -98,7 +120,6 @@ class DevInterface extends Component {
   }
 
   handleNameChange(e) {
-    console.log(e.target.value);
     this.setState({program_name:e.target.value});
   }
 
@@ -135,6 +156,10 @@ class DevInterface extends Component {
      });
   }
 
+  hideModal() {
+    this.setState({del: {show: false, name: "", link: ""}});
+  }
+
   render() {
     return(
       <div className="dev">
@@ -154,9 +179,10 @@ class DevInterface extends Component {
           fetchProgram={this.fetchProgram}
           handleNameChange={this.handleNameChange}
           handlePromptChange={this.handlePromptChange}
-          delete={this.delete}
+          deleteM={this.deleteModal}
           newProgram={this.newProgram}
           programs={this.props.programs} />
+          <Warning name={this.state.del.name} link={this.state.del.link} show={this.state.del.show} onHide={() => this.hideModal()} delete={this.delete}/>
       </div>
     );
   }

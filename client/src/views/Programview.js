@@ -12,7 +12,8 @@ let Programview = createClass({
       name: "",
       prompt: "",
       link: this.props.match.params.link,
-      copied: false
+      copied: false,
+      found: true
     };
   },
   componentDidMount: function() {
@@ -37,6 +38,9 @@ let Programview = createClass({
           prompt: responseJson.prompt
         });
       } else {
+        this.setState({
+          found: false
+        });
         console.log('failed to get');
       }
      });
@@ -61,10 +65,9 @@ let Programview = createClass({
         console.log(responseJson.console);
         if(responseJson.console.length > 0) {
           if(Array.isArray(responseJson.console)) {
-            this.refs.console.log(responseJson.console.join('xasdf'));
-            // responseJson.console.forEach(function(element) {
-            //   this.refs.console.log(element);
-            // }, this);
+            responseJson.console.forEach(function(element) {
+              this.refs.console.log(element);
+            }, this);
           } else {
             this.refs.console.log(responseJson.console);
           }
@@ -86,6 +89,7 @@ let Programview = createClass({
       return (
         <div className="programview">
           <Header toApp={true}/>
+          {this.state.found ? (
           <div className="container">
             <h2 className="deeper-sea">{this.state.name}</h2>
             <Console ref="console"
@@ -101,7 +105,13 @@ let Programview = createClass({
               <span className={(!this.state.copied ? 'hidden' : '')}>copied!</span>
             </ClipboardButton>
           </div>
-        </div>
+        ) : (
+          <div className="container">
+            <h2 className="deeper-sea">Program Not Found</h2>
+            <h3 className="deep-sea">You may have the wrong link, or this program could have been deleted.</h3>
+          </div>
+        )}
+      </div>
     );
   }
 });

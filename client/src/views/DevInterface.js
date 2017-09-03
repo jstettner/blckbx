@@ -15,6 +15,7 @@ class DevInterface extends Component {
 
     this.updateCode = this.updateCode.bind(this);
     this.save = this.save.bind(this);
+    this.delete = this.delete.bind(this);
     this.fetchProgram = this.fetchProgram.bind(this);
     this.newProgram = this.newProgram.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -66,6 +67,32 @@ class DevInterface extends Component {
         this.fetchProgram(responseJson.link,callback);
       } else {
         console.log('failed');
+      }
+     });
+  }
+
+  delete(link) {
+    var payload = {
+      link: link,
+      token: localStorage.getItem('accountData')
+    }
+
+    fetch('api/deleteprogram', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload)
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      if(responseJson.success) {
+        console.log('program deleted');
+        this.newProgram();
+        this.props.reauth(localStorage.getItem('accountData'));
+      } else {
+        console.log('delete failed');
       }
      });
   }
@@ -127,6 +154,7 @@ class DevInterface extends Component {
           fetchProgram={this.fetchProgram}
           handleNameChange={this.handleNameChange}
           handlePromptChange={this.handlePromptChange}
+          delete={this.delete}
           newProgram={this.newProgram}
           programs={this.props.programs} />
       </div>

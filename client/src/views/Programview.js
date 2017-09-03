@@ -1,7 +1,6 @@
 import React from 'react';
 import Console from 'react-console-component';
 import createClass from 'create-react-class';
-import { Button } from 'react-bootstrap';
 import ClipboardButton from 'react-clipboard.js';
 import Header from '../components/Header';
 import ReactGA from 'react-ga';
@@ -59,11 +58,16 @@ let Programview = createClass({
     .then((response) => response.json())
     .then((responseJson) => {
       if(responseJson.success) {
-        console.log(responseJson);
+        console.log(responseJson.console);
         if(responseJson.console.length > 0) {
-          responseJson.console.forEach(function(element) {
-            this.refs.console.log(element);
-          }, this);
+          if(Array.isArray(responseJson.console)) {
+            this.refs.console.log(responseJson.console.join('xasdf'));
+            // responseJson.console.forEach(function(element) {
+            //   this.refs.console.log(element);
+            // }, this);
+          } else {
+            this.refs.console.log(responseJson.console);
+          }
         }
         if(responseJson.result !== 'null') this.refs.console.logX('result', responseJson.result);
         this.refs.console.return();

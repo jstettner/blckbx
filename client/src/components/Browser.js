@@ -53,8 +53,9 @@ class Browser extends Component {
             <Glyphicon glyph="plus-sign" /> Program
           </ListGroupItem>
           { this.props.programs.map(program =>
-            <ListGroupItem className="btn-mid" key={program.link} onClick={() => this.props.fetchProgram(program.link)}>
-              <Glyphicon glyph="edit" /> {program.name}
+            <ListGroupItem className="btn-mid flex-row flex-between" key={program.link} onClick={() => this.props.fetchProgram(program.link)}>
+              <span><Glyphicon glyph="edit" /> {program.name}</span>
+              <Glyphicon glyph="trash" className="bright-hover" onClick={() => this.props.delete(program.link)}/>
             </ListGroupItem>
           ) }
         </ListGroup>

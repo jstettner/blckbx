@@ -6,7 +6,7 @@ var s = new Sandbox({timeout:4000});
 
 var runprgm = function(code, params, callback) {
   params = escape(params);
-  s.run(code + "main('" + params + "');", callback);
+  s.run(code + "main(unescape('" + params + "'));", callback);
 }
 
 module.exports = runprgm;

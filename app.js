@@ -12,6 +12,7 @@ var tokenauth = require('./routes/tokenauth');
 var saveprogram = require('./routes/saveprogram');
 var getprogram = require('./routes/getprogram');
 var runprogram = require('./routes/runprogram');
+var deleteprogram = require('./routes/deleteprogram');
 var initializeprogram = require('./routes/initializeprogram');
 
 var app = express();
@@ -38,6 +39,7 @@ app.use('/api/login/*', login);
 app.use('/api/tokenauth', tokenauth);
 app.use('/api/saveprogram', saveprogram);
 app.use('/api/getprogram', getprogram);
+app.use('/api/deleteprogram', deleteprogram);
 app.use('/api/runprogram', runprogram);
 app.use('/api/initializeprogram', initializeprogram);
 

@@ -26,8 +26,8 @@ router.post('/', function(req, res, next) {
       console.log('reached');
       sandbox(program.program, params, function (output) {
         response.success = true;
-        response.result = output.result;
-        response.console = output.console;
+        response.result = unescape(output.result);
+        response.console = unescape(output.console);
         res.json(response);
       });
     } else {

@@ -108,6 +108,7 @@ class Login extends Component {
         localStorage.setItem('accountData', responseJson.token);
         this.props.onLogin(responseJson.token);
         this.props.onHide();
+        window.location.reload();
       } else {
         if(responseJson.error === 'user not found') {
           this.setState({

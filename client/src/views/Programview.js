@@ -1,15 +1,19 @@
 import React from 'react';
 import Console from 'react-console-component';
 import createClass from 'create-react-class';
+import { Button } from 'react-bootstrap';
+import ClipboardButton from 'react-clipboard.js';
 import Header from '../components/Header';
 import ReactGA from 'react-ga';
+import ShareButtons from '../components/ShareButtons';
 
 let Programview = createClass({
   getInitialState: function() {
     return {
       name: "",
       prompt: "",
-      link: this.props.match.params.link
+      link: this.props.match.params.link,
+      copied: false
     };
   },
   componentDidMount: function() {
@@ -68,9 +72,15 @@ let Programview = createClass({
       }
      });
   },
+  copy: function() {
+    this.setState({
+      copied: true
+    });
+    setTimeout(() => this.setState({copied:false}), 2000);
+  },
   render: function() {
       return (
-        <div className="progameview">
+        <div className="programview">
           <Header toApp={true}/>
           <div className="container">
             <h2 className="deeper-sea">{this.state.name}</h2>
@@ -79,6 +89,13 @@ let Programview = createClass({
               handler={this.run}
               autofocus={true}
             />
+            <h3 className="text-color">Share this:</h3>
+            <ShareButtons className="mtm" url={window.location.href}/>
+            <span className="text-color"> or copy the link: </span>
+            <ClipboardButton className="light-sea outline-none" data-clipboard-text={window.location.href} onClick={() => this.copy()}>
+              <span className={(this.state.copied ? 'hidden' : '')}>copy to clipboard</span>
+              <span className={(!this.state.copied ? 'hidden' : '')}>copied!</span>
+            </ClipboardButton>
           </div>
         </div>
     );

@@ -101,8 +101,7 @@ let Programview = createClass({
             <ShareButtons className="mtm" url={window.location.href}/>
             <span className="text-color"> or copy the link: </span>
             <ClipboardButton className="light-sea outline-none" data-clipboard-text={window.location.href} onClick={() => this.copy()}>
-              <span className={(this.state.copied ? 'hidden' : '')}>copy to clipboard</span>
-              <span className={(!this.state.copied ? 'hidden' : '')}>copied!</span>
+              {(this.state.copied ? 'copied!' : 'copy to clipboard')}
             </ClipboardButton>
           </div>
         ) : (

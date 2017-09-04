@@ -20,9 +20,13 @@ class IDE extends Component {
   render() {
     return(
       <div>
-        <h2 className="deeper-sea">Current Program: {this.props.name || 'Untitled'}</h2>
+        {this.props.link ? (
+          <h2 className="deeper-sea">Editing Program: {this.props.name || 'Untitled'}</h2>
+        ) : (
+          <h2 className="deeper-sea">New Program: {this.props.name || 'Untitled'}</h2>
+        )}
         <div className="flex-row tools">
-          <Button className="mv-5 mr-5 width-20 btn-mid" onClick={() => this.props.save()}>
+          <Button className="mv-5 mr-5 width-20 btn-mid" disabled={!this.props.name} onClick={() => this.props.save()}>
             <Glyphicon glyph="cloud-upload" /> Save
           </Button>
           <Link className="mv-5 mh-5 width-20" to={'/program/' + this.props.link} target="_blank">
@@ -31,6 +35,7 @@ class IDE extends Component {
             </Button>
           </Link>
         </div>
+        {!this.props.name && <div className="error">Your program must have a name before saving.</div>}
         <div className="mb-10 basic-grey">Note: You must save before generating if you made changes</div>
         <AceEditor
           className="mt-10"

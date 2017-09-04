@@ -24,6 +24,7 @@ $deeper-sea: #2f8afa;
 $light-sea: #4a9afe;
 $gem: #3f00ff;
 
+$error: #a94442;
 // Greys
 $grey: #F5F7F9;
 $dark-grey: #151515;
@@ -36,6 +37,7 @@ $basic-grey: #757575;
 $grey-transparent: rgba(245, 247, 249, 0.9);
 
 @include color('grey', $grey);
+@include color('error', $error);
 @include color('gem', $gem);
 @include color('mid-grey', $mid-grey);
 @include color('basic-grey', $basic-grey);

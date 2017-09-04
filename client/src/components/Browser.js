@@ -39,7 +39,7 @@ class Browser extends Component {
     return(
       <div className="browser">
         <div className="width-100">
-          <div className="input-group pv-10 width-100">
+          <div className="input-group pv-10 pb-5 width-100">
             <span className="ph-5 input-group-addon">Name:</span>
             <input className="form-control" type="text" name="name" value={this.props.programName} placeholder="enter a name..." onChange={this.props.handleNameChange}/>
           </div>

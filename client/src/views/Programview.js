@@ -62,7 +62,6 @@ let Programview = createClass({
     .then((response) => response.json())
     .then((responseJson) => {
       if(responseJson.success) {
-        console.log(responseJson.console);
         if(responseJson.console.length > 0) {
           if(Array.isArray(responseJson.console)) {
             responseJson.console.forEach(function(element) {

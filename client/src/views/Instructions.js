@@ -21,15 +21,15 @@ class Instructions extends Component {
           <hr/>
           <h2 className="deeper-sea">What is BlckBx?</h2>
           <h4 className="text-color">
-            BlckBx allows for the quick scripting of single applications, with no UI needed.
+            BlckBx allows for the quick construction of single applications, with no UI needed.
             <br />
-            Users can draft and send small algorithms to friends and coworkers who need no programming knowledge to use.
+            Users can draft and send small algorithms to friends and coworkers who need no programming knowledge to use. We provide the frontend, and computing power, to let your programs run anywhere, even on mobile devices.
           </h4>
           <h2 className="deeper-sea">How do I get started?</h2>
           <h4 className="text-color">
-            Simply sign up or log in and get access to BlckBx's IDE. Enter your script, pick a name, a prompt, and generate the program.
+            Simply sign up or log in and get access to BlckBx's integrated development environment. Write your program, pick a name, a prompt, and click generate.
             <br />
-            Instantly, your program will run in the browser, ready to share.
+            Instantly, your program will be running in your web browser browser, ready to share.
             <br />
             <br/>
             It's as simple as that.

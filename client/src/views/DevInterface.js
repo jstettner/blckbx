@@ -55,6 +55,7 @@ class DevInterface extends Component {
   }
 
   save(callback) {
+    console.log(this.state);
     var payload = {
       name: this.state.program_name,
       prompt: this.state.program_prompt,

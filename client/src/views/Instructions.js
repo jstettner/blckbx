@@ -21,15 +21,15 @@ class Instructions extends Component {
           <hr/>
           <h2 className="deeper-sea">What is BlckBx?</h2>
           <h4 className="text-color">
-            BlckBx is a platform for devs by devs. It allows for the quick scripting of single applications, with no UI needed.
+            BlckBx allows for the quick scripting of single applications, with no UI needed.
             <br />
             Users can draft and send small algorithms to friends and coworkers who need no programming knowledge to use.
           </h4>
           <h2 className="deeper-sea">How do I get started?</h2>
           <h4 className="text-color">
-            Simply sign up or log in and get access to BlckBx's IDE. Enter your script, pick a name, a prompt, and save the program.
+            Simply sign up or log in and get access to BlckBx's IDE. Enter your script, pick a name, a prompt, and generate the program.
             <br />
-            Once your program is saved, click generate to make a custom link with your program running in the shell.
+            Instantly, your program will run in the browser, ready to share.
             <br />
             <br/>
             It's as simple as that.
@@ -82,7 +82,7 @@ class Instructions extends Component {
             <br/>
             <Link className="deep-sea" to="/program/59a6050618abb13b79939507"> <Glyphicon glyph="link" className="prm" />Secret Message </Link>
             <AceEditor
-              className="mt-10"
+              className="mt-10 pbl"
               mode="javascript"
               theme="chaos"
               value={"function main(x) {\r\n    return (x==='secretpass' ? 'secret info' : 'incorrect password');\r\n}"}

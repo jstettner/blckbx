@@ -21,7 +21,7 @@ class About extends Component {
             <br/>
             If you would like to support the program, Bitcoin donations are always appreciated: <span className="light-sea">1ALPrNsBPkbTUQocF1sJbKoBq3NKFLjZts</span>.
             <br/>
-            They help pay for the server costs, and allow BlckBx to be ad-free and free of charge.
+            They help pay for server costs, and allow BlckBx to remain ad-free and free of charge.
           </h4>
           <h2 className="deeper-sea">Security</h2>
           <h4 className="text-color">
@@ -38,11 +38,8 @@ class About extends Component {
             In the event of a compromise, we are <span className="light-sea">NOT RESPONSIBLE</span> for any user data exposed.
           </h4>
           <h2 className="deeper-sea">Work in progress</h2>
-          <h4 className="text-color">
-            This site is a work in progress, if you have any suggestions, or discover and bugs, please email <a href="mailto:blckbx.suggestions@gmail.com" className="light-sea">blckbx.suggestions@gmail.com</a>.
-            <br/>
-            <br/>
-            Support for other languages is coming soon.
+          <h4 className="text-color pbl">
+            This site is a work in progress, if you have any suggestions, or discover any bugs, please email <a href="mailto:blckbx.suggestions@gmail.com" className="light-sea">blckbx.suggestions@gmail.com</a>.
           </h4>
         </div>
       </div>

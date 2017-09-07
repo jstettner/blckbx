@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AceEditor from 'react-ace';
 import { Glyphicon, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { browserHistory } from 'react-router';
 
 import 'brace/mode/javascript';
 
@@ -9,6 +9,7 @@ class IDE extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      redirect: false,
       code: this.props.code
     }
   }
@@ -17,7 +18,17 @@ class IDE extends Component {
     this.setState({code: nextProps.code});
   }
 
+  redirect() {
+    browserHistory.push('/program/' + this.props.link);
+    window.location.reload();
+  }
+
+  generate() {
+    this.props.save(this.redirect.bind(this));
+  }
+
   render() {
+
     return(
       <div>
         {this.props.link ? (
@@ -29,14 +40,11 @@ class IDE extends Component {
           <Button className="mv-5 mr-5 width-20 btn-mid" disabled={!this.props.name} onClick={() => this.props.save()}>
             <Glyphicon glyph="cloud-upload" /> Save
           </Button>
-          <Link className="mv-5 mh-5 width-20" to={'/program/' + this.props.link} target="_blank">
-            <Button bsStyle="primary">
-              <Glyphicon glyph="circle-arrow-right" /> Generate
-            </Button>
-          </Link>
+          <Button bsStyle="primary" className="mv-5 mh-5 width-20" disabled={!this.props.name} onClick={() => this.generate()}>
+            <Glyphicon glyph="circle-arrow-right" /> Generate
+          </Button>
         </div>
         {!this.props.name && <div className="error">Your program must have a name before saving.</div>}
-        <div className="mb-10 basic-grey">Note: You must save before generating if you made changes</div>
         <AceEditor
           className="mt-10"
           mode="javascript"

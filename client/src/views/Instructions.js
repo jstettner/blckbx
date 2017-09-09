@@ -27,7 +27,7 @@ class Instructions extends Component {
           </h4>
           <h2 className="deeper-sea">How do I get started?</h2>
           <h4 className="text-color">
-            Simply sign up or log in and get access to BlckBx's integrated development environment. Write your program, pick a name, a prompt, and click generate.
+            Simply sign up and get access to BlckBx's integrated development environment. Write your program, pick a name, a prompt, and click generate.
             <br />
             Instantly, your program will be running in your web browser, ready to share.
             <br />

@@ -40,11 +40,6 @@ class Login extends Component {
   toSignup() {
     this.setState({
       mode: 'signup',
-      validationErrors: {
-        user: { inval: true },
-        pass: { inval: true },
-        confirm: { inval: true }
-      },
       messages: {
         registered: false
       },
@@ -54,17 +49,12 @@ class Login extends Component {
       },
       confirm: "",
       invalid: true
-    });
+    }, () => this.checkValid());
   }
 
   toLogin() {
     this.setState({
       mode: 'login',
-      validationErrors: {
-        user: { inval: true },
-        pass: { inval: true },
-        confirm: { inval: true }
-      },
       messages: {
         registered: false
       },
@@ -74,7 +64,7 @@ class Login extends Component {
       },
       confirm: "",
       invalid: true
-    });
+    }, () => this.checkValid());
   }
 
   authAccount() {

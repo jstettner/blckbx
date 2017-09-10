@@ -20,14 +20,21 @@ router.post('/', function(req, res, next) {
   TokenSchema.findOne({'key': token}, function (err, tokenFound) {
     if (err) return handleError(err);
     if(tokenFound) {
-      UserSchema.findOneAndUpdate({_id: tokenFound.user}, {$pull: {programs: {link: link}}}, function (err, user) {
-        if(user) {
-          ProgramSchema.findOneAndRemove({_id: link}, function (err) {
-            if(err) {
-              response.success = false;
-              res.json(response);
+      UserSchema.findOne({_id: tokenFound.user}, function (err, userPrim) {
+        if(userPrim && (userPrim.programs.filter(function(prgm) {return (prgm.link == link)})).length > 0) {
+          UserSchema.findOneAndUpdate({_id: tokenFound.user}, {$pull: {programs: {link: link}}}, function (err, user) {
+            if(user) {
+              ProgramSchema.findOneAndRemove({_id: link}, function (err) {
+                if(err) {
+                  response.success = false;
+                  res.json(response);
+                } else {
+                  response.success = true;
+                  res.json(response);
+                }
+              });
             } else {
-              response.success = true;
+              response.success = false;
               res.json(response);
             }
           });
